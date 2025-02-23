@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+    	<title>A Causal Inference Analysis of Parental Education and Study Time on Academic Success</title>
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    	<link rel="stylesheet" href="assets/css/main.css" /> <!-- Link to the same CSS file -->
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    	<style>
+            /* Add custom styles for the border */
+            .container {
+                border: 5px solid #333; /* Dark border color */
+                padding: 25px;  /* Add some padding inside the border */
+                margin: 75px;   /* Add space between the border and page edges */
+                border-radius: 50px; /* Rounded corners */
+                background-color: #fff; /* White background for the container */
+                color: #555; /* Dark text color for better readability */
+            }
+
+            /* Set background color for the whole page and text color */
+            body {
+                background-color: #f4f4f4; /* Light gray background for the page */
+                color: #333; /* Set a darker text color globally */
+                font-family: Arial, sans-serif; /* Set a clean and readable font */
+            }
+
+            /* Set dark color for all headings */
+            h1, h2, h3 {
+                color: #222; /* Darker color for headings */
+            }
+
+            /* Add orange line under each section heading */
+            h2 {
+                display: inline-block; /* Make the line only as wide as the heading */
+                border-bottom: 3px solid #f56a6a; /* Orange color for the line */
+                padding-bottom: 5px; /* Add some space between the text and the line */
+                margin-bottom: 20px; /* Space below the line */
+            }
+
+            /* Adjust paragraph and other text content */
+            p {
+                color: #333; /* Dark text for paragraphs */
+                line-height: 1.6; /* Add spacing between lines for easier reading */
+            }
+
+        </style>
+    </head>
+
+	<body class="is-preload">
+        <div class="container">
+		<!-- Header Section -->
+        <header>
+            <h1 style="text-align: center;">A Causal Inference Analysis of Parental Education and Study Time on Academic Success</h1>
+            <p style="text-align: center;" class="project-description">An inferential analysis on how a student's academic (study-time) and demographic (father's and mother's education level) factors (individually) affect their school performance.</p>
+        </header>
+
+        <!-- Background Section -->
+        <section id="background">
+            <h2>Background</h2>
+            <p>Education is a key factor for achieving a long-term economic progress. This is an important research question because understanding what influences students’ grades can help schools, families, and students themselves make better decisions to improve learning outcomes. By looking at how different aspects of a student’s life, such as their home address type (rural or urban), their father’s/mother’s education level, study time, etc., we can gain valuable insights. This topic is important in social sciences because improving student performance has long-term benefits for both individuals and society, such as better career opportunities and greater social equality.</p>
+        </section>
+
+        <!-- Research Question Section -->
+        <section id="research-question">
+            <h2>Research Question</h2>
+            <p>How parental education and study time affects the academic performance of a student?</p>
+        </section>
+
+        <!-- Hypothesis Section -->
+<section id="hypothesis">
+    <h2>Hypothesis</h2>
+    <p> “Students with higher parental education levels and more number of hours per week dedicated to studying have better academic performance, as measured by their final grade.”</p>
+    <p>This hypothesis stems from findings in educational research that parental involvement and support, as well as a student’s study habits, are key determinants of academic success.</p>
+    <ul>
+        <li><strong>Parental Education:</strong> Studies have consistently shown that parental education level is positively associated with students’ academic performance (and mental health as well). Parents with higher education levels are more likely to provide academic support, create an environment conducive to studying, and have higher expectations for their child’s academic success.</li>
+        <li><strong>Study Time:</strong> Academic performance often improves with increased study time, as students who dedicate more hours to studying are better prepared for exams and assignments. This aligns with theories of self-discipline and time investment in education.</li>
+    </ul>
+</section>
+
+
+        <!-- Dataset Section -->
+        <section id="dataset">
+            <h2>Dataset</h2>
+            <p>The <a href="https://archive.ics.uci.edu/dataset/320/student+performance" target="_blank">data</a> approaches student achievement in secondary education of two Portuguese schools. The data attributes include student grades, demographic, social and school related features, and it was collected by using school reports and questionnaires. Two datasets are provided regarding the performance in two distinct subjects: Mathematics (mat) and Portuguese language (por). In <a href="https://repositorium.sdum.uminho.pt/bitstream/1822/8024/1/student.pdf" target="_blank">[Cortez and Silva, 2008]</a>, the two datasets were modeled under binary/five-level classification and regression tasks. For this project, we will combine the Mathematics (mat) and Portugal (por) dataset, and conduct the further analysis.</p>
+        </section>
+
+        <!-- Data Visualizations Section -->
+        <section id="visualizations">
+            <h2>Graphs and Plots</h2>
+            <p>Here are some visual representations of the data. These graphs and plots help to illustrate key findings and insights from the analysis.</p>
+            
+            <div class="graph-container">
+                <div class="graph-box">
+                    <img src="images/DACSS603 Proj 1.png" alt="Graph 1" class="graph">
+                    <p class="graph-caption">Figure 1: Here, in almost all cases, irrespective of the number of hours a student is dedicating to this studies in a week, the most number of students always seem to be a Pedu value of 4, suggesting that even if one of the parent is highly educated, they are able to have a positive effect on their child’s studytime. It is also interesting to note that the second most prominent Pedu value is 2, not 3.</p>
+                </div>
+                <div class="graph-box">
+                    <img src="images/DACSS603 Proj 2.png" alt="Graph 2" class="graph">
+                    <p class="graph-caption">Figure 2: We notice that for weekly study time level of 3, we have the highest median of final grade at 12.49, which makes sense as the more time one dedicates to studying in a week, the better they perform. However, for that of level 4, the median is slightly less at 12.27. While still pretty high, a slight decline from the previous result could be because studying for more than 10 hours in a week, along with doing other activities, could lead to exhaustion and worse mental and physical health, and consequently a bad academic performance. Studytime 1 and 2 have median final_grade median values of 10.58 and 11.33 respectively, again aligning with the hypothesis.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Methodology Section -->
+        <br>
+        <section id="methodology">
+            <h2>Methodology</h2>
+            <p>
+                This study employs a structured data analysis pipeline, including <strong>data cleaning, summarization, processing, DAG construction, and linear regression modeling</strong> to examine the impact of <strong>parental education and study time</strong> on student performance.
+            </p>
+
+            <h3>Data Cleaning and Pre-processing</h3>
+            <p>
+                The dataset, consisting of student performance data from two Portuguese schools, was first <strong>imported and merged</strong>. Initial pre-processing included:
+            </p>
+            <ul>
+                <li><strong>Combining datasets:</strong> The Mathematics (<code>mat</code>) and Portuguese (<code>por</code>) datasets were merged for a more comprehensive analysis.</li>
+                <li><strong>Feature selection:</strong> Retained relevant variables: <code>Medu</code> (mother’s education), <code>Fedu</code> (father’s education), <code>studytime</code> (weekly study time), <code>subj</code> (subject), and <code>G3</code> (final grade).</li>
+                <li><strong>Parental education transformation:</strong> Created a new variable, <code>Pedu</code> (Parental Education), by taking the <strong>maximum</strong> of <code>Medu</code> and <code>Fedu</code>, assuming that the highest parental education level has the strongest impact.</li>
+                <li><strong>Missing values check:</strong> Verified and ensured there were no missing values.</li>
+                <li><strong>Descriptive statistics</strong> were performed to understand the distribution of study time and parental education levels, <strong>summary statistics</strong> of final grades, the <strong>correlation</strong> between key variables.</li>
+            </ul>
+
+            <h3>Directed Acyclic Graph (DAG) Construction</h3>
+            <p>
+                A <strong>Directed Acyclic Graph (DAG)</strong> was constructed to <strong>illustrate causal relationships</strong> between key variables. The logic behind the DAG:
+            </p>
+            <ul>
+                <li><strong>Pedu → studytime:</strong> Higher parental education levels influence students' study habits.</li>
+                <li><strong>Pedu → final_grade:</strong> Educated parents often provide better academic support, positively impacting performance.</li>
+                <li><strong>studytime → final_grade:</strong> Increased study time generally improves grades.</li>
+                <li><strong>subj → final_grade:</strong> Different subjects have different difficulty levels, affecting performance.</li>
+                <li><strong>subj → studytime:</strong> Subject difficulty influences study time requirements.</li>
+            </ul>
+
+            <p>
+                This DAG helps identify <strong>confounders and appropriate control variables</strong> for unbiased causal inference.
+            </p>
+
+            <!-- Add DAG image here -->
+            <div class="image-container">
+                <img src="images/DACSS603 Proj 3.png" alt="DAG Representation" width="500">
+                <p class="image-caption">Figure: DAG representing the assumed causal relationships.</p>
+            </div>
+
+            <h3>Linear Regression Model</h3>
+            <p>
+                A linear regression model was applied to analyze the relationship between <strong>study time, parental education, and final grades</strong>, controlling for subject differences.
+            </p>
+        </section>
+
+        <!-- Results and Findings Section -->
+        <section id="results">
+            <h2>Results and Findings</h2>
+
+            <h3>Does Study Time Have a Significant Effect on Final Grade?</h3>
+            <p>
+                To study the individual/independent effect of studytime on final_grade, we consider all the paths between studytime and final_grade from our DAG and find all the open backdoor paths. To close these paths, we simply control for Pedu and subj variables between the path. The final model:
+
+                <pre style="text-align: left; font-weight: bold; font-size: 18px; color: #333; margin: 0;">
+                        final_grade = β₀ + β₁(studytime) + β₂(Pedu) + ε
+                </pre>
+            </p>
+            <ul>
+                <li><strong>Coefficient for studytime (β₁):</strong> 0.7403</li>
+                <li><strong>p-value:</strong> < 0.001</li> 
+                <li><strong>95% Confidence Interval:</strong> [0.4738261, 1.006758]</li>
+                <li><strong>Standard Error:</strong> 0.1358</li>
+            </ul>
+
+                The regression analysis indicates that <strong>study time has a statistically significant effect on final grades</strong>. The coefficient for <code>studytime</code> is positive, suggesting that students who dedicate more hours to studying tend to have <strong>higher final grades</strong>.
+
+            <p>
+                Since the <strong>p-value is below 0.05</strong>, we reject the null hypothesis and conclude that <strong>study time is significantly associated with final grades</strong>.
+            </p>
+
+            <h3>Does Parental Education Have a Significant Effect on Final Grade?</h3>
+            <p>We do not need to control for any variables in this scenario. The final model:</p>
+
+                <pre style="text-align: left; font-weight: bold; font-size: 18px; color: #333; margin: 0;">
+                        final_grade = β₀ + β₁(Pedu) + ε
+                </pre>
+
+            <ul>
+                <li><strong>Coefficient for Pedu (β₂):</strong> 0.7550</li>
+                <li><strong>p-value:</strong> &lt; 0.001</li> 
+                <li><strong>95% Confidence Interval:</strong> [0.538, 0.972]</li>
+                <li><strong>Standard Error:</strong> 0.1104</li>
+            </ul>
+            The results also show that <strong>parental education (Pedu) has a significant effect on student performance</strong>. The coefficient for <code>Pedu</code> is positive, meaning students with <strong>higher-educated parents</strong> tend to perform better academically.
+            <p>
+                Since the <strong>p-value is below 0.05</strong>, we conclude that <strong>parental education has a statistically significant effect on final grades</strong>.
+            </p>
+        </section>
+
+
+        <!-- Conclusion Section -->
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+                        <ul>
+                <li>Both study time and parental education significantly impact final grades.</li>
+                <li>Students with higher study time show improved academic performance (p < 0.05).</li>
+                <li>Parental education also positively influences final grades (p < 0.05).</li>
+                <li>The subject studied (<code>subj</code>) may also affect the results, suggesting variations in difficulty levels.</li>
+            </ul>
+        </section>
+
+        <!-- References Section -->
+        <section id="references">
+            <h2>References</h2>
+            <p> 1. https://archive.ics.uci.edu/dataset/320/student+performance <br>
+                2. https://repositorium.sdum.uminho.pt/bitstream/1822/8024/1/student.pdf <br>
+                3. Cortez, P. (2008). Student Performance [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5TG7T. <br>
+                4. Pinquart, M., & Ebeling, M. (2020). Parental educational expectations and academic achievement in children and adolescents—a meta-analysis. Educational Psychology Review, 32(2), 463-480. <br>
+                5. Davis-Kean, P. E., Tighe, L. A., & Waters, N. E. (2021). The role of parent educational attainment in parenting and children’s development. Current Directions in Psychological Science, 30(2), 186-192. <br>
+                6. Hammerstein, S., König, C., Dreisörner, T., & Frey, A. (2021). Effects of COVID-19- related school closures on student achievement-a systematic review. Frontiers in psychology, 12, 746289. <br>
+                7. Wilder, S. (2023). Effects of parental involvement on academic achievement: a meta-synthesis. In Mapping the field (pp. 137-157). Routledge.</p>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>UPLOAD FINAL PROJECT (Full report), codes on github, Research paper pdfs, Created by Suryam Gupta. © 2025</p>
+        </footer>
+	</body>
+</html>
