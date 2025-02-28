@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+    	<title>Decoding Review Impact: A Study on Sentiment, Length, and Readability in Movie Reviews</title>
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    	<link rel="stylesheet" href="assets/css/main.css" /> <!-- Link to the same CSS file -->
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    	<style>
+            /* Add custom styles for the border */
+            .container {
+                border: 5px solid #333; /* Dark border color */
+                padding: 25px;  /* Add some padding inside the border */
+                margin: 75px;   /* Add space between the border and page edges */
+                border-radius: 50px; /* Rounded corners */
+                background-color: #fff; /* White background for the container */
+                color: #555; /* Dark text color for better readability */
+            }
+
+            /* Set background color for the whole page and text color */
+            body {
+                background-color: #f4f4f4; /* Light gray background for the page */
+                color: #333; /* Set a darker text color globally */
+                font-family: Arial, sans-serif; /* Set a clean and readable font */
+            }
+
+            /* Set dark color for all headings */
+            h1, h2, h3 {
+                color: #222; /* Darker color for headings */
+            }
+
+            /* Add orange line under each section heading */
+            h2 {
+                display: inline-block; /* Make the line only as wide as the heading */
+                border-bottom: 3px solid #f56a6a; /* Orange color for the line */
+                padding-bottom: 5px; /* Add some space between the text and the line */
+                margin-bottom: 20px; /* Space below the line */
+            }
+
+            /* Adjust paragraph and other text content */
+            p {
+                color: #333; /* Dark text for paragraphs */
+                line-height: 1.6; /* Add spacing between lines for easier reading */
+            }
+
+        </style>
+    </head>
+
+	<body class="is-preload">
+        <div class="container">
+		<!-- Header Section -->
+        <header>
+            <h1 style="text-align: center;">Decoding Review Impact: A Study on Sentiment, Length, and Readability in Movie Reviews</h1>
+            <p style="text-align: center;" class="project-description">This study analyzes how textual metrics such as Sentiment Polarity, Review Length, and Readability Score affect user engagement in Amazon Movie Reviews.</p>
+        </header>
+
+        <!-- Background Section -->
+        <section id="background">
+            <h2>Background</h2>
+            <p>Online consumer reviews are a cornerstone of modern decision-making, especially on platforms like Amazon and IMDb, where millions of reviews guide choices for movies and TV shows. These platforms often include helpfulness voting mechanisms, allowing users to indicate a review’s usefulness. Despite their importance, the factors driving perceived helpfulness—such as review length, sentiment, and readability—remain underexplored. This study focuses on the movie and TV show domain to uncover how these elements influence engagement, building on prior research suggesting that emotional intensity, review depth, and clarity play key roles.</p>
+            <p>Understanding these dynamics is vital for optimizing review visibility, enhancing consumer decisions, and empowering content creators to write impactful reviews. It also contributes to broader insights into digital consumer behavior and natural language processing.</p>
+        </section>
+
+        <!-- Research Question Section -->
+        <section id="research-question">
+            <h2>Research Question</h2>
+            <p>What factors influence the likelihood of receiving higher perceived helpfulness votes in movie and TV show reviews?</p>
+        </section>
+
+        <!-- Hypothesis Section -->
+        <section id="hypothesis">
+            <h2>Hypothesis</h2>
+            <ul>
+                <li><strong>H1:</strong> The readability of a review has a curvilinear relationship with perceived helpfulness—reviews with moderate readability scores receive more votes, while very low or very high readability reduces vote counts.</li>
+                <li><strong>H2:</strong> The length of a review has a curvilinear relationship with perceived helpfulness—short reviews receive fewer votes, vote counts increase with length up to a threshold, then decrease for overly long reviews.</li>
+                <li><strong>H3:</strong> Reviews with strongly positive or negative sentiments receive higher vote counts compared to neutral sentiment reviews.</li>
+            </ul>
+            <p>These hypotheses are grounded in prior studies suggesting that extreme sentiments engage readers emotionally, while balanced length and readability optimize informativeness and accessibility.</p>
+        </section>
+
+        <!-- Dataset Section -->
+        <section id="dataset">
+            <h2>Dataset</h2>
+            <p>The study uses the <a href="https://nijianmo.github.io/amazon/index.html" target="_blank">Amazon Review/Product Dataset</a> from UCSD, spanning May 1996 to October 2018, with 233.1 million reviews across categories. This project focuses on the "Movies and TV Shows" subset, pre-processed to include 10,419 reviews after filtering out rows with missing votes and extreme lengths (under 10 or over 1024 words).</p>
+        </section>
+
+        <!-- Data Visualizations Section -->
+        <section id="visualizations">
+            <h2>Graphs and Plots</h2>
+            <p>Below are visualizations illustrating key insights from the analysis.</p>
+            <div class="graph-container">
+                <div class="graph-box">
+                    <img src="images/review_length_distribution.png" alt="Review Length Distribution" class="graph">
+                    <p class="graph-caption">Figure 1: Distribution of Review Lengths shows most reviews fall between 88 and 310 words, with a median of 171, supporting the hypothesis of an optimal length range.</p>
+                </div>
+                <div class="graph-box">
+                    <img src="images/mean_vote_by_sentiment.png" alt="Mean Vote by Sentiment" class="graph">
+                    <p class="graph-caption">Figure 2: Mean Vote by Sentiment reveals positive (8.32) and negative (6.8) reviews receive higher votes than neutral ones (5.03), aligning with H3.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Methodology Section -->
+        <section id="methodology">
+            <h2>Methodology</h2>
+            <p>This study employs a comprehensive pipeline: data pre-processing, sentiment analysis, readability scoring, and Negative Binomial regression to analyze review helpfulness.</p>
+            <h3>Data Pre-processing</h3>
+            <ul>
+                <li>Loaded 50,000 reviews, filtered to 10,419 after removing missing votes and extreme lengths.</li>
+                <li>Calculated review length and tokenized text using R libraries like <code>quanteda</code> and <code>tidytext</code>.</li>
+            </ul>
+            <h3>Sentiment and Readability Analysis</h3>
+            <ul>
+                <li>Sentiment polarity was computed using dictionary-based methods and NRC lexicon.</li>
+                <li>Readability was assessed with Flesch-Kincaid scores.</li>
+            </ul>
+            <h3>Statistical Modeling</h3>
+            <p>Due to overdispersion in vote counts (mean: 7.97, variance: 513.12), a Negative Binomial regression model was used to evaluate the effects of length, polarity, and readability on votes.</p>
+        </section>
+
+        <!-- Results and Findings Section -->
+        <section id="results">
+            <h2>Results and Findings</h2>
+            <ul>
+                <li><strong>Review Length:</strong> Coefficient 0.0022 (p < 0.001) indicates a significant positive effect on votes, though curvilinear trends suggest an optimal range.</li>
+                <li><strong>Polarity:</strong> Coefficient 0.0027 (p = 0.385) shows no significant direct effect, but bar plots confirm extreme sentiments (positive: 8.32, negative: 6.8) outperform neutral (5.03), supporting H3.</li>
+                <li><strong>Readability:</strong> Coefficient 0.0062 (p < 0.001) suggests higher readability increases votes, with evidence of a curvilinear peak.</li>
+            </ul>
+            <p>These findings validate H1 and H2 partially (curvilinear trends observed) and H3 fully (extreme sentiments drive engagement).</p>
+        </section>
+
+        <!-- Conclusion Section -->
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>This study reveals that review length and readability significantly influence helpfulness votes, with optimal ranges enhancing engagement, while extreme sentiments (positive or negative) consistently outperform neutral ones. These insights can guide reviewers and platforms in crafting and prioritizing impactful content.</p>
+        </section>
+
+        <!-- References Section -->
+        <section id="references">
+            <h2>References</h2>
+            <p>
+                1. Dashtipour, K., et al. (2021). Sentiment analysis of Persian movie reviews using deep learning. <i>Entropy, 23(5)</i>, 596.<br>
+                2. Qaisar, S. M. (2020). Sentiment analysis of IMDb movie reviews using LSTM. <i>ICCIS</i>, 1-4.<br>
+                3. Kumar, S., et al. (2020). Movie recommendation system using sentiment analysis. <i>IEEE Transactions on Computational Social Systems, 7(4)</i>, 915-923.<br>
+                4. Daeli, N. O. F., & Adiwijaya, A. (2020). Sentiment analysis on movie reviews using Information Gain and KNN. <i>Journal of Data Science and Its Applications, 3(1)</i>, 1-7.
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Code on <a href="https://github.com/suryam1504" target="_blank">GitHub</a>. Created by Suryam Gupta. © 2025</p>
+        </footer>
+        </div>
+	</body>
+</html>
