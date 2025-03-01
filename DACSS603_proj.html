@@ -43,6 +43,80 @@
                 line-height: 1.6; /* Add spacing between lines for easier reading */
             }
 
+            /* Style for the buttons */
+            .button-container {
+                text-align: center; /* Center the buttons */
+                margin-top: 20px; /* Space above buttons */
+                margin-bottom: 20px;
+            }
+            .button-container .button {
+                display: initial; /* Side-by-side buttons */
+                margin: 0 50px; /* Space between buttons */
+                padding: 10px 20px; /* Smaller padding for smaller buttons */
+                font-size: 14px; /* Smaller font size */
+            }
+
+            /* Visualization Styles (Moved from main.css and Adjusted) */
+            .graph-container {
+                display: flex;
+                flex-direction: row; /* Side by side */
+                justify-content: space-between; /* Even spacing */
+                align-items: stretch; /* Stretch boxes to equal height */
+                gap: 20px; /* Space between boxes */
+                margin-top: 20px;
+                width: 100%; /* Full width */
+            }
+            .graph-box {
+                flex: 1; /* Equal width for each box */
+                display: flex; /* Flexbox to control content height */
+                flex-direction: column; /* Stack image and caption vertically */
+                justify-content: space-between; /* Distribute space */
+                text-align: center;
+                background: #fff;
+                padding: 15px; /* Increased padding for balance */
+                border-radius: 8px;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+                max-width: 50%; /* Limit width to half of container */
+                height: auto; /* Allow natural height */
+            }
+            .graph {
+                max-width: 100%; /* Responsive image */
+                height: auto;
+                border-radius: 5px;
+                border: 2px solid #ddd;
+                margin-bottom: 10px; /* Space between image and caption */
+            }
+            .graph-caption {
+                font-size: 14px;
+                color: #666;
+                margin-top: 0; /* Remove extra top margin */
+                flex-grow: 1; /* Allow caption to fill remaining space */
+                display: flex; /* Flex for consistent alignment */
+                align-items: center; /* Center caption vertically if needed */
+                justify-content: center; /* Center text horizontally */
+            }
+
+            /* DAG Image Styles (Moved from main.css) */
+            .image-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 20px 0;
+            }
+            .image-container img {
+                max-width: 80%;
+                height: auto;
+                border: 2px solid #ddd;
+                border-radius: 10px;
+                box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+            }
+            .image-caption {
+                font-size: 14px;
+                color: #666;
+                margin-top: 5px;
+                text-align: center;
+            }
+
         </style>
     </head>
 
@@ -54,7 +128,7 @@
             <p style="text-align: center;" class="project-description">An inferential analysis on how a student's academic (study-time) and demographic (father's and mother's education level) factors (individually) affect their school performance.</p>
             <div class="button-container">
                 <a href="https://github.com/suryam1504/A-Causal-Inference-Analysis-of-Parental-Education-and-Study-Time-on-Academic-Success" target="_blank" class="button">Code on GitHub</a>
-                <a href="DACSS603_report.html" target="_blank" class="button">Full Report</a>
+                <a href="DACSS603_report.html" target="_blank" class="button">Detailed Report</a>
             </div>
         </header>
 

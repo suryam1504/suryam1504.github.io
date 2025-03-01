@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-    	<title>Decoding Review Impact: A Study on Sentiment, Length, and Readability in Movie Reviews</title>
+    	<title>A Study on Sentiment, Length, and Readability in Movie Reviews</title>
     	<meta charset="utf-8" />
     	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     	<link rel="stylesheet" href="assets/css/main.css" /> <!-- Link to the same CSS file -->
@@ -47,12 +47,59 @@
             .button-container {
                 text-align: center; /* Center the buttons */
                 margin-top: 20px; /* Space above buttons */
+                margin-bottom: 20px;
             }
             .button-container .button {
-                display: inline-block; /* Side-by-side buttons */
-                margin: 0 10px; /* Space between buttons */
+                display: initial; /* Side-by-side buttons */
+                margin: 0 50px; /* Space between buttons */
                 padding: 10px 20px; /* Smaller padding for smaller buttons */
                 font-size: 14px; /* Smaller font size */
+            }
+
+            /* Visualization Styles */
+            .graph-container {
+                width: 100%;
+                display: block; /* Ensure rows stack vertically */
+                padding: 20px 0; /* Add padding for spacing */
+            }
+            .graph-row {
+                display: flex;
+                justify-content: space-around; /* Even spacing between boxes */
+                flex-wrap: nowrap; /* Keep items side by side */
+                margin-bottom: 30px; /* Space between rows */
+                width: 100%;
+                align-items: stretch; /* Ensure boxes stretch to match the tallest in the row */
+            }
+            .graph-box {
+                width: 48%; /* Two boxes per row with small gap */
+                display: flex; /* Flexbox to align image and caption vertically */
+                flex-direction: column; /* Stack image and caption */
+                justify-content: space-between; /* Distribute space evenly */
+                background: #fff; /* White background for the box */
+                padding: 15px; /* Padding inside the box */
+                border-radius: 8px; /* Rounded corners */
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shadow around the box */
+                text-align: center; /* Center-align content */
+                position: relative; /* Ensure caption stays within box */
+            }
+            .graph {
+                max-width: 100%; /* Responsive image */
+                height: auto; /* Maintain aspect ratio */
+                border-radius: 5px; /* Rounded corners */
+                border: 2px solid #ddd; /* Light gray border */
+                margin-bottom: 10px; /* Space between image and caption */
+                object-fit: contain; /* Ensure image fits without distortion */
+            }
+            .graph-caption {
+                font-size: 14px; /* Smaller font for captions */
+                color: #333; /* Match paragraph text color */
+                flex-grow: 1; /* Allow caption to expand and fill space */
+                display: flex; /* Flexbox for vertical centering */
+                align-items: center; /* Center caption vertically */
+                justify-content: center; /* Center caption horizontally */
+                padding: 0 10px; /* Add padding to prevent text from touching edges */
+                overflow-wrap: break-word; /* Allow text to wrap within the box */
+                word-break: break-word; /* Ensure long words break */
             }
         </style>
     </head>
@@ -65,21 +112,26 @@
             <p style="text-align: center;" class="project-description">This study analyzes how textual metrics such as Sentiment Polarity, Review Length, and Readability Score affect user engagement in Amazon Movie Reviews.</p>
             <div class="button-container">
                 <a href="https://github.com/suryam1504/A-Study-on-Sentiment-Length-and-Readability-in-Movie-Reviews" target="_blank" class="button">Code on GitHub</a>
-                <a href="DACSS758_report.html" target="_blank" class="button">Full Report</a>
+                <a href="DACSS758_report.html" target="_blank" class="button">Detailed Report</a>
             </div>
         </header>
 
         <!-- Background Section -->
         <section id="background">
             <h2>Background</h2>
-            <p>Online consumer reviews are a cornerstone of modern decision-making, especially on platforms like Amazon and IMDb, where millions of reviews guide choices for movies and TV shows. These platforms often include helpfulness voting mechanisms, allowing users to indicate a review’s usefulness. Despite their importance, the factors driving perceived helpfulness—such as review length, sentiment, and readability—remain underexplored. This study focuses on the movie and TV show domain to uncover how these elements influence engagement, building on prior research suggesting that emotional intensity, review depth, and clarity play key roles.</p>
-            <p>Understanding these dynamics is vital for optimizing review visibility, enhancing consumer decisions, and empowering content creators to write impactful reviews. It also contributes to broader insights into digital consumer behavior and natural language processing.</p>
+            <p>Online consumer reviews are a cornerstone of modern decision-making, especially on platforms like Amazon and IMDb, where millions of reviews guide choices for 
+                movies and TV shows. These platforms often include helpfulness voting mechanisms, allowing users to indicate a review’s usefulness. Despite their importance, 
+                the factors driving perceived helpfulness—such as review length, sentiment, and readability—remain underexplored. This study focuses on the movie and TV show 
+                domain to uncover how these elements influence engagement, building on prior research suggesting that emotional intensity, review depth, and clarity play key 
+                roles. <br>
+                Understanding these dynamics is vital for optimizing review visibility, enhancing consumer decisions, and empowering content creators to write impactful reviews. 
+                It also contributes to broader insights into digital consumer behavior and natural language processing.</p>
         </section>
 
         <!-- Research Question Section -->
         <section id="research-question">
             <h2>Research Question</h2>
-            <p>What factors influence the likelihood of receiving higher perceived helpfulness votes in movie and TV show reviews?</p>
+            <p>What factors influence the likelihood of receiving a higher overall voting/perceived helpfulness in movie and TV show reviews?</p>
         </section>
 
         <!-- Hypothesis Section -->
@@ -99,47 +151,69 @@
             <p>The study uses the <a href="https://nijianmo.github.io/amazon/index.html" target="_blank">Amazon Review/Product Dataset</a> from UCSD, spanning May 1996 to October 2018, with 233.1 million reviews across categories. This project focuses on the "Movies and TV Shows" subset, pre-processed to include 10,419 reviews after filtering out rows with missing votes and extreme lengths (under 10 or over 1024 words).</p>
         </section>
 
-        <!-- Data Visualizations Section -->
-        <section id="visualizations">
-            <h2>Graphs and Plots</h2>
-            <p>Below are visualizations illustrating key insights from the analysis.</p>
-            <div class="graph-container">
-                <div class="graph-box">
-                    <img src="images/review_length_distribution.png" alt="Review Length Distribution" class="graph">
-                    <p class="graph-caption">Figure 1: Distribution of Review Lengths shows most reviews fall between 88 and 310 words, with a median of 171, supporting the hypothesis of an optimal length range.</p>
-                </div>
-                <div class="graph-box">
-                    <img src="images/mean_vote_by_sentiment.png" alt="Mean Vote by Sentiment" class="graph">
-                    <p class="graph-caption">Figure 2: Mean Vote by Sentiment reveals positive (8.32) and negative (6.8) reviews receive higher votes than neutral ones (5.03), aligning with H3.</p>
-                </div>
-            </div>
-        </section>
-
         <!-- Methodology Section -->
         <section id="methodology">
             <h2>Methodology</h2>
-            <p>This study employs a comprehensive pipeline: data pre-processing, sentiment analysis, readability scoring, and Negative Binomial regression to analyze review helpfulness.</p>
+            <p>This study employs a comprehensive pipeline: Creating corpus and summarization, Tokenization and data pre-processing, Creating DFM and Feature Co-occurrence matrix,
+                Wordclouds, Readability Scoring, Review Length, Sentiment Analysis, Topic Modelling using Latent Dirichlet Allocation (LDA), and Negative Binomial regression to analyze review helpfulness.</p>
             <h3>Data Pre-processing</h3>
             <ul>
                 <li>Loaded 50,000 reviews, filtered to 10,419 after removing missing votes and extreme lengths.</li>
                 <li>Calculated review length and tokenized text using R libraries like <code>quanteda</code> and <code>tidytext</code>.</li>
             </ul>
-            <h3>Sentiment and Readability Analysis</h3>
+            <h3>Readability, Length, and Sentiment Analysis</h3>
             <ul>
-                <li>Sentiment polarity was computed using dictionary-based methods and NRC lexicon.</li>
-                <li>Readability was assessed with Flesch-Kincaid scores.</li>
+                <li>Readability was assessed with Flesch-Kincaid scores using <code>textstat_readability</code>.</li>
+                <li>Review lengths were grouped into bins of 50 words (e.g., 1–50, 51–100, etc.), and the total helpfulness votes for each bin were calculated and 
+                    plotted to analyze the trend of votes as review length increases.</li>
+                <li>Sentiment polarity was computed using dictionary-based methods and NRC Word-Emotion Association lexicon from packages <code>SentimentAnalysis</code>, 
+                    and compared it with <code>liwcalike</code>.</li>
             </ul>
             <h3>Statistical Modeling</h3>
             <p>Due to overdispersion in vote counts (mean: 7.97, variance: 513.12), a Negative Binomial regression model was used to evaluate the effects of length, polarity, and readability on votes.</p>
+        </section>
+
+        <!-- Data Visualizations Section -->
+        <section id="visualizations">
+            <h2>Graphs and Plots</h2>
+            <p>Below are visualizations illustrating key insights from the analysis.</p>
+            <div class="graph-container">
+                <!-- First Row: Review Length Distribution and Mean Vote by Sentiment -->
+                <div class="graph-row">
+                    <div class="graph-box">
+                        <img src="images/DACSS758 Proj 1.png" alt="Review Length Distribution" class="graph">
+                        <p class="graph-caption">Figure 1: Distribution of Review Lengths shows most reviews fall between 88 and 310 words, with a median of 171, supporting the hypothesis of an optimal length range.</p>
+                    </div>
+                    <div class="graph-box">
+                        <img src="images/DACSS758 Proj 2.png" alt="Mean Vote by Sentiment" class="graph">
+                        <p class="graph-caption">Figure 2: Mean Vote by Sentiment reveals positive (8.32) and negative (6.8) reviews receive higher votes than neutral ones (5.03), aligning with H3.</p>
+                    </div>
+                </div>
+                <!-- Second Row: DFM/FCM and Topic Modelling -->
+                <div class="graph-row">
+                    <div class="graph-box">
+                        <img src="images/DACSS758 Proj 3.png" alt="DFM and FCM" class="graph">
+                        <p class="graph-caption">Figure 3: Document-Feature Matrix (DFM) and Feature Co-occurrence Matrix (FCM) illustrate word frequency and relationships, 
+                            highlighting common terms like "film," "movie," and "good" that drive review content, while words like "first," "look," or "little," have fewer 
+                            connections.</p>
+                    </div>
+                    <div class="graph-box">
+                        <img src="images/DACSS758 Proj 4.png" alt="Topic Modelling" class="graph">
+                        <p class="graph-caption">Figure 4: Topic Modelling with LDA reveals seven distinct topics in reviews (e.g., action films, horror, family stories), showing thematic diversity that may influence perceived helpfulness.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Results and Findings Section -->
         <section id="results">
             <h2>Results and Findings</h2>
             <ul>
-                <li><strong>Review Length:</strong> Coefficient 0.0022 (p < 0.001) indicates a significant positive effect on votes, though curvilinear trends suggest an optimal range.</li>
-                <li><strong>Polarity:</strong> Coefficient 0.0027 (p = 0.385) shows no significant direct effect, but bar plots confirm extreme sentiments (positive: 8.32, negative: 6.8) outperform neutral (5.03), supporting H3.</li>
                 <li><strong>Readability:</strong> Coefficient 0.0062 (p < 0.001) suggests higher readability increases votes, with evidence of a curvilinear peak.</li>
+                <li><strong>Review Length:</strong> Coefficient 0.0022 (p < 0.001) indicates a significant positive effect on votes, though curvilinear trends suggest an 
+                    optimal range.</li>
+                <li><strong>Polarity:</strong> Coefficient 0.0027 (p = 0.385) shows no significant direct effect, but bar plots confirm extreme sentiments 
+                    (positive: 8.32, negative: 6.8) outperform neutral (5.03), supporting H3.</li>
             </ul>
             <p>These findings validate H1 and H2 partially (curvilinear trends observed) and H3 fully (extreme sentiments drive engagement).</p>
         </section>
