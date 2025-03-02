@@ -1,0 +1,393 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+    	<title>Evaluating Psychometric Features and Contextual Embeddings for Mental Disorder Classification</title>
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    	<link rel="stylesheet" href="assets/css/main.css" /> <!-- Link to the same CSS file -->
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    	<style>
+            /* Add custom styles for the border */
+            .container {
+                border: 5px solid #333; /* Dark border color */
+                padding: 25px;  /* Add some padding inside the border */
+                margin: 75px;   /* Add space between the border and page edges */
+                border-radius: 50px; /* Rounded corners */
+                background-color: #fff; /* White background for the container */
+                color: #555; /* Dark text color for better readability */
+            }
+
+            /* Set background color for the whole page and text color */
+            body {
+                background-color: #f4f4f4; /* Light gray background for the page */
+                color: #333; /* Set a darker text color globally */
+                font-family: Arial, sans-serif; /* Set a clean and readable font */
+            }
+
+            /* Set dark color for all headings */
+            h1, h2, h3 {
+                color: #222; /* Darker color for headings */
+            }
+
+            /* Add orange line under each section heading */
+            h2 {
+                display: inline-block; /* Make the line only as wide as the heading */
+                border-bottom: 3px solid #f56a6a; /* Orange color for the line */
+                padding-bottom: 5px; /* Add some space between the text and the line */
+                margin-bottom: 20px; /* Space below the line */
+            }
+
+            /* Adjust paragraph and other text content */
+            p {
+                color: #333; /* Dark text for paragraphs */
+                line-height: 1.6; /* Add spacing between lines for easier reading */
+            }
+
+            /* Style for the buttons */
+            .button-container {
+                text-align: center; /* Center the buttons */
+                margin-top: 20px; /* Space above buttons */
+                margin-bottom: 20px;
+            }
+            .button-container .button {
+                display: initial; /* Side-by-side buttons */
+                margin: 0 50px; /* Space between buttons */
+                padding: 10px 20px; /* Smaller padding for smaller buttons */
+                font-size: 14px; /* Smaller font size */
+            }
+
+            /* Visualization Styles */
+            .graph-container {
+                width: 100%;
+                display: block; /* Ensure rows stack vertically */
+                padding: 20px 0; /* Add padding for spacing */
+            }
+            .graph-row {
+                display: flex;
+                justify-content: space-evenly; /* Even spacing between boxes */
+                flex-wrap: nowrap; /* Keep items side by side */
+                margin-bottom: 30px; /* Space between rows */
+                width: 100%;
+                align-items: stretch; /* Ensure boxes stretch to match the tallest in the row */
+            }
+            .graph-box {
+                width: 48%; /* Two boxes per row with small gap */
+                display: flex; /* Flexbox for vertical and horizontal centering */
+                flex-direction: column; /* Stack image and caption vertically */
+                justify-content: center; /* Center content vertically within the box */
+                align-items: center; /* Center content horizontally within the box */
+                background: #fff; /* White background for the box */
+                padding: 15px; /* Padding inside the box */
+                border-radius: 8px; /* Rounded corners */
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shadow around the box */
+                text-align: center; /* Center-align content */
+                position: relative; /* Ensure caption stays within box */
+                min-height: 300px; /* Minimum height to ensure vertical centering (adjust as needed) */
+            }
+            .graph {
+                max-width: 100%; /* Responsive image */
+                height: auto; /* Maintain aspect ratio */
+                border-radius: 5px; /* Rounded corners */
+                border: 2px solid #ddd; /* Light gray border */
+                margin-bottom: 10px; /* Small space between image and caption */
+                object-fit: contain; /* Ensure image fits without distortion */
+            }
+            .graph-caption {
+                font-size: 14px; /* Smaller font for captions */
+                color: #333; /* Match paragraph text color */
+                display: block; /* Simplified display for text */
+                padding: 0 10px; /* Add padding to prevent text from touching edges */
+                overflow-wrap: break-word; /* Allow text to wrap within the box */
+                word-break: break-word; /* Ensure long words break */
+                margin-top: 0; /* Remove any default top margin */
+            }
+
+            /* Style for Image Box (similar to graph-box and post-box, centered) */
+            .image-box1 {
+                background: #fff; /* White background */
+                padding: 15px; /* Padding inside the box */
+                border-radius: 10px; /* Rounded corners */
+                margin-bottom: 10px; /* Space between image and next post */
+                text-align: center; /* Center-align content */
+                display: flex; /* Flexbox for vertical alignment */
+                flex-direction: column; /* Stack image and caption */
+                justify-content: center; /* Center content vertically */
+                align-items: center; /* Center content horizontally within the box */
+                width: 70%; /* Match width of graph-box for alignment in the row (if side by side) */
+                margin: 0 auto; /* Center the box horizontally on the page */
+            }
+
+            .image-box2 {
+                background: #fff; /* White background */
+                padding: 15px; /* Padding inside the box */
+                border-radius: 10px; /* Rounded corners */
+                margin-bottom: 10px; /* Space between image and next post */
+                text-align: center; /* Center-align content */
+                display: flex; /* Flexbox for vertical alignment */
+                flex-direction: column; /* Stack image and caption */
+                justify-content: center; /* Center content vertically */
+                align-items: center; /* Center content horizontally within the box */
+                width: 45%; /* Match width of graph-box for alignment in the row (if side by side) */
+                margin: 0 auto; /* Center the box horizontally on the page */
+            }
+
+            /* Style for Image Row (similar to graph-row) */
+            .image-row {
+                display: flex;
+                justify-content: space-evenly; /* Even spacing between boxes */
+                flex-wrap: nowrap; /* Keep items side by side */
+                margin-bottom: 20px; /* Space between image row and next post */
+                width: 100%;
+                align-items: stretch; /* Ensure boxes stretch to match the tallest in the row */
+            }
+
+            /* Style for Image Box (updated to work within image-row, centered) */
+            .image-box {
+                background: #fff; /* White background */
+                padding: 15px; /* Padding inside the box */
+                border-radius: 8px; /* Rounded corners */
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for consistency */
+                text-align: center; /* Center-align content */
+                display: flex; /* Flexbox for vertical alignment */
+                flex-direction: column; /* Stack image and caption */
+                justify-content: center; /* Center content vertically */
+                align-items: center; /* Center content horizontally within the box */
+                width: 48%; /* Match width of graph-box for alignment in the row */
+            }
+
+            /* Style for the Image (unchanged, but included for reference) */
+            .image {
+                max-width: 100%; /* Responsive image */
+                height: auto; /* Maintain aspect ratio */
+                border-radius: 5px; /* Rounded corners */
+                border: 2px solid #ddd; /* Light gray border */
+                margin-bottom: 10px; /* Space between image and caption */
+                object-fit: contain; /* Ensure image fits without distortion */
+            }
+
+            /* Style for Image Caption (optional, uncomment if needed) */
+            .image-caption {
+                font-size: 14px; /* Smaller font for captions */
+                color: #333; /* Match paragraph text color */
+                flex-grow: 1; /* Allow caption to expand and fill space */
+                display: flex; /* Flexbox for vertical centering */
+                align-items: center; /* Center caption vertically */
+                justify-content: center; /* Center caption horizontally */
+                padding: 0 10px; /* Add padding to prevent text from touching edges */
+                overflow-wrap: break-word; /* Allow text to wrap within the box */
+                word-break: break-word; /* Ensure long words break */
+            }
+        </style>
+    </head>
+
+	<body class="is-preload">
+        <div class="container">
+		<!-- Header Section -->
+        <header>
+            <h1 style="text-align: center;">Evaluating Psychometric Features and Contextual Embeddings for Mental Disorder Classification</h1>
+            <p style="text-align: center;" class="project-description">This study assesses the potential of psychometric features and contextual embeddings to classify mental disorders (anxiety, panic, depression) in short biomedical texts from social media, using machine learning and deep learning models.</p>
+            <div class="button-container">
+                <a href="https://github.com/suryam1504/Masters-Thesis-Evaluating-Psychometric-Features-and-Contextual-Embeddings-in-Biomedical-Texts" target="_blank" class="button">Code on GitHub</a>
+                <a href="IDSIA_Bio_Texts_Thesis_pdf.html" target="_blank" class="button">Full Report</a>
+            </div>
+        </header>
+
+        <!-- Background Section -->
+        <section id="background">
+            <h2>Background</h2>
+            <p>Mental health, encompassing emotional, psychological, and social well-being, significantly impacts daily life, physical health, and relationships. With the rise 
+                of social media, user-generated content provides a valuable resource for detecting mental disorders like anxiety, panic, and depression. Despite growing 
+                awareness, these conditions remain underdiagnosed due to stigma and complexity. This study leverages natural language processing (NLP) to analyze short 
+                biomedical texts from Reddit (where individuals openly discuss their experiences), addressing the gap in simultaneous classification of anxiety, panic, 
+                and depression, and exploring how psychometric features and contextual embeddings can enhance early detection/diagnosis and treatment.</p>
+        </section>
+
+        <!-- Research Question Section -->
+        <section id="research-question">
+            <h2>Research Question</h2>
+            <p>How can psychometric features (e.g., LIWC, Emotions, Emotional Intensity) and contextual embeddings be combined to effectively classify mental 
+               disorders (anxiety, panic, depression) in short biomedical texts from social media?</p>
+        </section>
+
+        <!-- Hypothesis Section -->
+        <section id="hypothesis">
+            <h2>Hypothesis</h2>
+            <p>“Psychometric features (LIWC, emotion detection, emotion intensity) and contextual embeddings (SBERT) can be effectively combined using machine learning and 
+                deep learning models to achieve high accuracy in classifying anxiety, panic, and depression in short biomedical texts from social media, outperforming models 
+                using individual feature sets.”
+                <br>This hypothesis is based on prior research suggesting that combining semantic (contextual embeddings) and psychological and psychometric features information 
+                enhances mental health classification, as these features capture both linguistic patterns and emotional nuances in text.</p>
+        </section>
+
+        <!-- Dataset Section -->
+        <section id="dataset">
+            <h2>Dataset</h2>
+            <p>The study collects data from Reddit, leveraging its specialized mental health subreddits to obtain user-generated posts related to anxiety, panic, 
+                and depression (as detailed in Table 3.1 of the report). Data was scraped using <strong>Apify</strong>, a web scraping tool capable of extracting up to 1000 posts per subreddit, ensuring efficiency and 
+                compliance with website policies. Only original posts were collected, excluding comments, to maintain comprehensive and self-contained descriptions of 
+                mental health experiences. Broad subreddits like r/mentalhealth and r/anxietydepression were excluded to avoid ambiguity in labeling. This dataset comprises 7,866 
+                unique posts, forming a rich textual corpus for feature extraction and psychometric analysis. </p>
+            <p>The data cleaning process ensured high-quality input for analysis by removing duplicates, checking for missing values, and filtering texts based on length. 
+                Two duplicate rows were eliminated to prevent redundancy, and no missing values were found. Texts with fewer than 10 words were removed to ensure meaningful 
+                context, while texts exceeding 1024 words were excluded to maintain compatibility with transformer-based models. The dataset was labeled into three 
+                categories—anxiety, panic, and depression—based on the source subreddits. To address class imbalance, undersampling was applied, reducing the majority 
+                classes to match the minority class, resulting in a balanced dataset with approximately 1,812–1,815 rows per category. This resulted in a final balanced dataset 
+                of 5,441 rows, ensuring better generalization and model reliability.</p>
+        </section>
+
+        <!-- Subreddit Posts Example Section -->
+        <section id="example-posts">
+            <h2>Subreddit Posts Example</h2>
+            <!--<div class="post-box">
+                <p class="post-title"><strong>Anxiety</strong>
+                    <br><i>"i wake up with this dreadful feeling every morning. it’s nearly crippling, i feel exhausted and scared. it makes starting every day so difficult 
+                    and makes me wanna just stay home and sleep rather than go to school. i wish i knew a way to stop it. i want to start medication for my anxiety but 
+                    i’m not sure how soon that’ll be put into action. does anyone have a similar situation and possibly a way to cope?"</i></p>
+            </div>
+            <div class="post-box">
+                <p class="post-title"><strong>Panic</strong>
+                    <br><i>"it is hard not to feel valid when all my panic attacks are not even visible to onlookers. people do not understand the turmoil i go through on a 
+                        daily basis cause they cannot see it. some of my symptoms during panic attacks include racing heart, shortness of breath, tight chest, depersonalization, 
+                        numbness/tingling, muscle twitches (rare occasions), and dry mouth. sometimes i feel i may die due to them. i once had to go to the er because i was so 
+                        terrified i was dying. they feel absolutely horrible, and have really impacted my life on a daily basis. they happen out of the blue, and i wake up 
+                        everyday scared of when the next one will happen. but i feel like nobody takes my condition seriously, since they cannot even see when im panicking. 
+                        like maybe im just overreacting. does anybody else deal with invisible panic attacks? :("</i></p>
+            </div>
+            <div class="post-box">
+                <p class="post-title"><strong>Depression</strong>
+                <br><i>"i feel so lonely. my friends are too busy with their own lives. i dont want to bother them. yet they’re persistent on me staying alive. i feel so 
+                    drained, useless, exhausted, alone, worthless and everything else. no professional wants to help me, even after attempting. big sigh."</i></p>
+            </div>-->
+
+            <div class="image-box2">
+                <img src="images/APD text example.png" alt="Example Image" class="image">
+                <!--<p class="image-caption">Figure: Evaluation of various Sentence Embeddings Models.</p>-->
+            </div>
+        </section>
+
+        <!-- Methodology Section -->
+        <section id="methodology">
+            <h2>Methodology</h2>
+            <p>This study employed a structured pipeline involving data collection and pre-processing, feature extraction, and model evaluation to classify mental disorders in short 
+                biomedical texts.</p>
+            <h3>Feature Extraction</h3>
+            <ul>
+                <li>
+                    <strong>Contextual Embeddings: </strong> After experimenting with multiple BERT-based models such as <code>bert-base-nli-mean-tokens</code>from 
+                    <code>HuggingFace</code>, <code>all-distilroberta-v1</code> under <code>SentenceTransformers</code> was chosen for subsequent experiemnts as it yielded the best results in terms of classification
+                    performance.
+                </li>
+                <div class="image-box1">
+                    <img src="images/IDSIA Results 1.png" alt="Example Image" class="image">
+                    <!--<p class="image-caption">Figure: Evaluation of various Sentence Embeddings Models.</p>-->
+                </div>
+                <li>
+                    <strong>Linguistic Inquiry and Word Count (LIWC) - 22 Features:</strong> The text analysis software LIWC quantifies linguistic and psychological features, with 
+                    118 features measuring aspects like lifestyle, family, work, culture, money, and illness. Summary measures analyze analytical thinking, clout, authenticity, 
+                    and emotional tone, with scores ranging from 1 to 99. The tool also provides fundamental statistics like word count and words per sentence.
+                </li>
+                <li>
+                    <strong>Emotions Detection:</strong> Incorporated <code>EmoRoBERTa</code>, a fine-tuned model based on RoBERTa. It employs multi-label classification, assigning 
+                    multiple emotion labels to a single text, reflecting the complexity of human emotions. The model outputs 28 probability scores, summing to 1, representing 
+                    emotions such as amusement, caring, realization, nervousness, optimism, etc.
+                </li>
+                <li>
+                    <strong>Emotion Intensity:</strong> Emotion intensity measures the strength of emotions expressed in text, where words like "miserable" convey stronger 
+                    feelings than "sad." Using the NRC Emotion Intensity Lexicon (NRC-EIL), which contains 9,829 words with intensity scores from 0 to 1, the 
+                    approach evaluates eight basic emotions—anger, anticipation, disgust, fear, joy, sadness, surprise, and trust. Texts are converted to lowercase, and 
+                    intensity is calculated as the mean score of identified words.
+                </li>
+            </ul>
+            <h3>Model Development and Evaluation</h3>
+            <p>Developed and compared Logistic Regression (LR), Extreme Gradient Boosting (XGB), and a Multi-layered Deep Learning architecture (LSTM + CNN, LSTM + CNN + LSTM, etc.) using 
+                10-fold cross-validation. Evaluated models with metrics like accuracy, F1 score, and Matthews Correlation Coefficient (MCC).</p>
+        </section>
+
+        <!-- Results and Findings Section -->
+        <section id="results">
+            <h2>Results and Findings</h2>
+            <ul>
+                <li><strong>Logistic Regression (LR):</strong> Achieved the highest weighted F1 score of 81.9% when combining sentence embeddings with emotions, 
+                    outperforming other configurations.</li>
+                <li><strong>Extreme Gradient Boosting (XGB):</strong> Reached an weighted F1 score of 80.3% when embeddings, normalized LIWC features, and 
+                    emotions were combined, with strong performance but slightly lower than LR.</li>
+                <li><strong>Deep Learning (LSTM + CNN):</strong> Obtained an F1 score of 80.7% with LSTM(32) + CNN(5,2), showing competitive results but 
+                    highlighting challenges in modeling nuanced mental health texts.</li>
+                <li><strong>Feature Impact:</strong> Combinations of contextual embeddings, emotions, and intensity outperformed LIWC features alone, with 
+                    normalized LIWC improving performance when integrated with embeddings.</li>
+            </ul>
+            <div class="image-row">
+                <div class="image-box">
+                    <img src="images/IDSIA Results 2.png" alt="Example Image" class="image">
+                    <!--<p class="image-caption">Figure: Evaluation of various Sentence Embeddings Models.</p>-->
+                </div>
+                <div class="image-box">
+                    <img src="images/IDSIA Results 3.png" alt="Example Image" class="image">
+                    <!--<p class="image-caption">Figure: Evaluation of various Sentence Embeddings Models.</p>-->
+                </div>
+            </div>
+            <p>These findings suggest that psychometric features and contextual embeddings are powerful for mental disorder classification, with LR being the most effective model for this dataset.</p>
+        </section>
+
+        <!-- Data Visualizations Section -->
+        <section id="visualizations">
+            <h2>Graphs and Plots</h2>
+            <p>Below are visualizations illustrating key insights from the analysis of mental health classification.</p>
+            <div class="graph-container">
+                <!-- First Row: Word Clouds and Emotion Probabilities -->
+                <div class="graph-row">
+                    <div class="graph-box">
+                        <img src="images/IDSIA 1.png" alt="Word Cloud - Panic Dataset" class="graph">
+                        <p class="graph-caption">Figure 1: Word Cloud for the Panic Dataset <br><br>Highlights frequent terms like ”panic,” ”attack,” ”feel,” ”heart,” ”time,”
+                            ”help,” ”anxiety,” and ”breath,” reflecting common themes in mental health posts.</p>
+                    </div>
+                    <div class="graph-box">
+                        <img src="images/IDSIA 2.png" alt="Emotion Extraction of a positive text" class="graph">
+                        <p class="graph-caption">Figure 2: Emotion Extraction of a positive text <br><br> Shows high probabilities of emotions such as amusement (0.44), excitement (0.15), and joy (0.10).</p>
+                    </div>
+                </div>
+                <!-- Second Row: Confusion Matrices -->
+                <div class="graph-row">
+                    <div class="graph-box">
+                        <img src="images/IDSIA 3.png" alt=" Average Probabilities of Emotional Intensities for anxiety, panic, and depression datasets" class="graph">
+                        <p class="graph-caption">Figure 3:  Average Probabilities of Emotional Intensities for anxiety, panic, and depression datasets <br><br> Anger intensity is highest in the panic dataset at 0.42, indicating that panic 
+                            attacks may evoke anger due to sudden loss of control, followed by depression at 0.38 and anxiety at 0.34, possibly reflecting frustration or irritability. Anticipation intensity peaks in the anxiety dataset at 
+                            0.47, showing heightened worry about future events, with panic at 0.45 and depression at 0.43, suggesting a general lack of optimism across all three conditions.</p>
+                    </div>
+                    <div class="graph-box">
+                        <img src="images/IDSIA 4.png" alt="Average Probabilities of Emotions for Depression dataset" class="graph">
+                        <p class="graph-caption">Figure 4: Average Probabilities of Emotions for Depression dataset <br><br> Sadness (0.23) is the most dominant emotion, reflecting the sorrow and hopelessness associated with depression. 
+                            Fear (0.09) indicates underlying worries, while disappointment (0.08) highlights frustration from unmet expectations. Realization (0.06) suggests moments of clarity or self-awareness within the depressive state.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion Section -->
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>This study demonstrates that psychometric features (LIWC, emotions, intensity) and contextual embeddings can effectively classify anxiety, panic, and depression in short biomedical texts from social media, with Logistic 
+                Regression achieving the best performance (F1 score of 81.9%). The results highlight the potential of NLP for early mental health detection, reducing stigma, and improving outcomes, while suggesting future work on larger datasets, 
+                along with hyperparameter tuning, and incorporating Large Language Models (LLMs) for deeper insights and causal inferencing.</p>
+        </section>
+
+        <!-- References Section -->
+        <section id="references">
+            <h2>References</h2>
+            <p>
+                1. Prince, M., et al. (2007). No health without mental health. <i>The Lancet, 370(9590)</i>, 859–877.<br>
+                2. Calvo, R. A., et al. (2017). Natural language processing in mental health applications using non-clinical texts. <i>Natural Language Engineering, 23(5)</i>, 649–685.<br>
+                3. Rissola, E. A., et al. (2020). A dataset for research on depression in social media. <i>Proceedings of the 28th ACM Conference on User Modeling, Adaptation and Personalization</i>, 338–342.<br>
+                4. Kim, J., et al. (2020). A deep learning model for detecting mental illness from user content on social media. <i>Scientific Reports, 10(1)</i>, 11846.<br>
+                5. Mitrović, S., et al. (2023). Annotating panic in social media using active learning, transformers and domain knowledge. <i>2023 IEEE International Conference on Data Mining Workshops (ICDMW)</i>, 1269–1278.
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Created by Suryam Gupta. © 2025</p>
+        </footer>
+        </div>
+	</body>
+</html>
