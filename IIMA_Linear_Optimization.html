@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+    	<title>Linear & Integer Optimization using Python PuLP and AMPL</title>
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    	<link rel="stylesheet" href="assets/css/main.css" />
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    	<style>
+            /* Add custom styles for the border */
+            .container {
+                border: 5px solid #333; /* Dark border color */
+                padding: 25px;  /* Add some padding inside the border */
+                margin: 75px;   /* Add space between the border and page edges */
+                border-radius: 50px; /* Rounded corners */
+                background-color: #fff; /* White background for the container */
+                color: #555; /* Dark text color for better readability */
+            }
+
+            /* Set background color for the whole page and text color */
+            body {
+                background-color: #f4f4f4; /* Light gray background for the page */
+                color: #333; /* Set a darker text color globally */
+                font-family: Arial, sans-serif; /* Set a clean and readable font */
+            }
+
+            /* Set dark color for all headings */
+            h1, h2, h3 {
+                color: #222; /* Darker color for headings */
+            }
+
+            /* Add orange line under each section heading */
+            h2 {
+                display: inline-block; /* Make the line only as wide as the heading */
+                border-bottom: 3px solid #f56a6a; /* Orange color for the line */
+                padding-bottom: 5px; /* Add some space between the text and the line */
+                margin-bottom: 20px; /* Space below the line */
+            }
+
+            /* Adjust paragraph and other text content */
+            p {
+                color: #333; /* Dark text for paragraphs */
+                line-height: 1.6; /* Add spacing between lines for easier reading */
+            }
+
+            /* Style for the buttons */
+            .button-container {
+                text-align: center; /* Center the buttons */
+                margin-top: 20px; /* Space above buttons */
+                margin-bottom: 20px;
+            }
+            .button-container .button {
+                display: initial; /* Side-by-side buttons */
+                margin: 0 50px; /* Space between buttons */
+                padding: 10px 20px; /* Smaller padding for smaller buttons */
+                font-size: 14px; /* Smaller font size */
+            }
+
+            /* Visualization Styles */
+            .graph-container {
+                width: 100%;
+                display: block; /* Ensure rows stack vertically */
+                padding: 20px 0; /* Add padding for spacing */
+            }
+            .graph-row {
+                display: flex;
+                justify-content: space-evenly; /* Even spacing between boxes */
+                flex-wrap: nowrap; /* Keep items side by side */
+                margin-bottom: 30px; /* Space between rows */
+                width: 100%;
+                align-items: stretch; /* Ensure boxes stretch to match the tallest in the row */
+            }
+            .graph-box {
+                width: 48%; /* Two boxes per row with small gap */
+                display: flex; /* Flexbox for vertical and horizontal centering */
+                flex-direction: column; /* Stack image and caption vertically */
+                justify-content: center; /* Center content vertically within the box */
+                align-items: center; /* Center content horizontally within the box */
+                background: #fff; /* White background for the box */
+                padding: 15px; /* Padding inside the box */
+                border-radius: 8px; /* Rounded corners */
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shadow around the box */
+                text-align: center; /* Center-align content */
+                position: relative; /* Ensure caption stays within box */
+                min-height: 300px; /* Minimum height to ensure vertical centering */
+            }
+            .graph {
+                max-width: 100%; /* Responsive image */
+                height: auto; /* Maintain aspect ratio */
+                border-radius: 5px; /* Rounded corners */
+                border: 2px solid #ddd; /* Light gray border */
+                margin-bottom: 5px; /* Small space between image and caption */
+                object-fit: contain; /* Ensure image fits without distortion */
+            }
+            .graph-caption {
+                font-size: 14px; /* Smaller font for captions */
+                color: #333; /* Match paragraph text color */
+                display: block; /* Simplified display for text */
+                padding: 0 10px; /* Add padding to prevent text from touching edges */
+                overflow-wrap: break-word; /* Allow text to wrap within the box */
+                word-break: break-word; /* Ensure long words break */
+                margin-top: 0; /* Remove any default top margin */
+            }
+
+            /* Style for Table Box */
+            .table-box {
+                background: #fff; /* White background */
+                padding: 15px; /* Padding inside the box */
+                border-radius: 8px; /* Rounded corners */
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for consistency */
+                margin-bottom: 20px; /* Space between table and next content */
+                text-align: center; /* Center-align content */
+                width: 100%; /* Full width within container */
+                max-width: 1000px; /* Limit maximum width for readability */
+                margin: 0 auto; /* Center the box horizontally on the page */
+                overflow-x: auto; /* Enable horizontal scrolling if table is too wide */
+            }
+            .table-box table {
+                width: 100%; /* Full width of the box */
+                border-collapse: collapse; /* Collapse borders for clean look */
+                font-size: 14px; /* Match font size of captions and text */
+                color: #333; /* Match paragraph text color */
+            }
+            .table-box caption {
+                font-size: 14px; /* Smaller font for caption */
+                color: #666; /* Slightly lighter for distinction */
+                padding-bottom: 10px; /* Space below caption */
+                caption-side: top; /* Place caption above table */
+            }
+            .table-box th, .table-box td {
+                border: 1px solid #ddd; /* Light gray border */
+                padding: 10px; /* Padding inside cells */
+                text-align: center; /* Center-align text */
+            }
+            .table-box th {
+                background-color: #f56a6a; /* Orange background for headers, matching theme */
+                color: #fff; /* White text for contrast */
+                font-weight: bold; /* Bold headers */
+            }
+            .table-box tr:hover {
+                background-color: #f9f9f9; /* Light gray on hover for readability */
+            }
+
+            .pdf-wrapper {
+                display: flex;
+                justify-content: center; /* Center horizontally */
+                align-items: center; /* Center vertically */
+                width: 100;
+                height: 100; /* Allow full height for centering */
+                margin: 30px 0; /* Add some vertical spacing */
+            }
+            .pdf-wrapper iframe {
+                width: 80%; /* Constrain width to 80% for centering */
+                height: 700px; /* Maintain the desired height */
+                border: none; /* Remove default iframe border */
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow for consistency */
+                border-radius: 8px; /* Match other box styles */
+            }
+        </style>
+    </head>
+
+	<body class="is-preload">
+        <div class="container">
+            <!-- Header Section -->
+            <header>
+                <h1 style="text-align: center;">Linear & Integer Optimization using Python PuLP and AMPL</h1>
+                <p style="text-align: center;" class="project-description">This project explores 16 real-life optimization problems, modeling them mathematically and solving them using CBC and CPLEX solvers via AMPL software and Python's PuLP library.</p>
+                <div class="button-container">
+                    <a href="https://github.com/suryam1504/IIMA-Linear-Integer-Optimization-using-Python-PuLP-and-AMPL" target="_blank" class="button">GitHub</a>
+                    <a href="mailto:suryamgupta12345@gmail.com" class="button">Contact Me</a>
+                </div>
+            </header>
+
+            <!-- Linear Optimization Problems Section -->
+            <section id="linear-optimization-problems">
+                <h2>Linear Optimization Problems</h2>
+                <p>The merged PDF of all the problems can be viewed here. Preview the report below or download it.</p>
+                <div class="pdf-wrapper">
+                    <iframe src="assets/pdf/Linear Optimization Problems.pdf"></iframe>
+                </div>
+            </section>
+
+            <!-- 16 Problems Individually Section -->
+            <section id="problems-individually">
+                <h2>16 Problems Individually</h2>
+                <ol>
+                    <li><a href="https://drive.google.com/file/d/1XGwbsR0aWLtVt2ODMmPXsn2km5WAm0oX/view?usp=sharing" target="_blank">Bluesky - Bluesky Airlines Problem PDF</a>&nbsp&nbsp&nbsp&nbsp&nbsp             
+                    <a href="https://drive.google.com/file/d/1GVsbi964yaRbUkiDBg4Kv9dQbxqKxTOA/view?usp=sharing" target="_blank">Bluesky - 1-2 Bluesky Afterclass PDF</a> </li>
+                    <li><a href="https://drive.google.com/file/d/1oPN0Zik9wxLBem2avzEJkYMwY0YsoN2D/view?usp=sharing" target="_blank">Paper Recycling - SJ PDF</a></li>
+                    <li><a href="https://drive.google.com/file/d/1wLwTCUCVGPtt_QIbU5iP1BvOaYUwG9nq/view?usp=sharing" target="_blank">Amazing Deal - Case PDF</a>&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a href="https://drive.google.com/file/d/1goPBf82FO3X9b3WUNMfAKZp2Jm7g-OzM/view?usp=sharing" target="_blank">Amazing Deal - Facility Location PDF Session 1&2</a></li>
+                    <li><a href="https://drive.google.com/file/d/14sNH4LS9nacHt8eAEMm7ABe43Tlf45Z3/view?usp=sharing" target="_blank">Assembly Line Balancing - ALB Model PDF</a></li>
+                    <li><a href="https://drive.google.com/file/d/1pyXVGiy87vCQfPXMrQDjkG_TfV2EkvFE/view?usp=sharing" target="_blank">Freight Allocation - 10 Freight Allocation PDF</a></li>
+                    <li><a href="https://drive.google.com/file/d/1zyBpmp-Bm3yPfLq_qCenI5HYOUiMgumA/view?usp=sharing" target="_blank">Global Electronics - SM PDF</a></li>
+                    <li><a href="https://drive.google.com/file/d/1QboUDk9x9wggJN7D7JKbR2d-PsYxVkro/view?usp=sharing" target="_blank">Mars Incorporated - PDF</a></li>
+                    <li><a href="https://drive.google.com/file/d/1ddeyNxGRe98abWmcO-jgzyZsjzqV9fK6/view?usp=sharing" target="_blank">Milk Collection - Complete PDF</a>&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a href="https://drive.google.com/file/d/1Nc-5Py944NyEzb23OnWuY-vrv5N_VJom/view?usp=sharing" target="_blank">Milk Collection - Complete VRP PDF</a></li>
+                    <li><a href="https://drive.google.com/file/d/1YIwmGQk_tFbGEPtVzFh89EcjtjHk_JHe/view?usp=sharing" target="_blank">Mining Problem - Mining PDF</a></li>
+                    <li><a href="https://drive.google.com/file/d/1uWv3laXPtdbgAnNyVyfenALngX5_Di0B/view?usp=sharing" target="_blank">Motorola - Selection PDF</a></li>
+                    <li><a href="https://drive.google.com/file/d/1-EXfjK0ODrhJIWrnTnc_jDbuuPpEQ7Ih/view?usp=sharing" target="_blank">Network Design - PDF</a>&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a href="https://docs.google.com/presentation/d/1z-xi8uEGl3Gw1E8mpvjo-DXzq8KQso8t/edit?usp=sharing&ouid=105393771704986261322&rtpof=true&sd=true" target="_blank">Network Design - PPT</a></li>
+                    <li><a href="https://docs.google.com/presentation/d/1kZ8Dx7CZYWsgrPoO_slLeZF8_HZ2qIBX/edit?usp=sharing&ouid=105393771704986261322&rtpof=true&sd=true" target="_blank">Power Generation - PPT</a></li>
+                    <li><a href="https://drive.google.com/file/d/1XgLcWvq4ouYVntBpb_06rMIXleh9xRan/view?usp=sharing" target="_blank">Red Tomatoes - PDF</a></li>
+                    <li><a href="https://docs.google.com/presentation/d/1ylKi8MKQ1BSyqVuT8H7jeojob9fzW5AX/edit?usp=sharing&ouid=105393771704986261322&rtpof=true&sd=true" target="_blank">Selecting Telecommunication Carriers - PPT</a></li>
+                    <li><a href="https://docs.google.com/presentation/d/1yjTui9EFZIbQx-ldUhS2JoVOMN8Ne9_Z/edit?usp=sharing&ouid=105393771704986261322&rtpof=true&sd=true" target="_blank">Sinofert - PPT</a></li>
+                    <li><a href="https://drive.google.com/file/d/1oDHaHuEh8FUDtCpD37Q_gpcjXxiLH16u/view?usp=sharing" target="_blank">Workforce Scheduling - PDF</a></li>
+                </ol>
+            </section>
+
+            <!-- Academic Integrity Notice Section -->
+            <section id="academic-integrity">
+                <h2>Academic Integrity Notice</h2>
+                <p>I am unable to share the Python and AMPL codes for these optimization problems as they are part of the Indian Institute of Management (IIMA) curriculum. Uploading them online would violate academic integrity policies. For further information about these problems, please contact me directly.</p>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <p>Created by Suryam Gupta. © 2025</p>
+            </footer>
+        </div>
+	</body>
+</html>
