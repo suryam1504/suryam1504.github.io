@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+    	<title>Education</title>
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    	<link rel="stylesheet" href="assets/css/main.css" />
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    	<style>
+            /* Add custom styles for the border */
+            .container {
+                border: 5px solid #333; /* Dark border color */
+                padding: 25px;  /* Add some padding inside the border */
+                margin: 75px;   /* Add space between the border and page edges */
+                border-radius: 50px; /* Rounded corners */
+                background-color: #fff; /* White background for the container */
+                color: #555; /* Dark text color for better readability */
+            }
+
+            /* Set background color for the whole page and text color */
+            body {
+                background-color: #f4f4f4; /* Light gray background for the page */
+                color: #333; /* Set a darker text color globally */
+                font-family: Arial, sans-serif; /* Set a clean and readable font */
+            }
+
+            /* Set dark color for all headings */
+            h1, h2, h3 {
+                color: #222; /* Darker color for headings */
+            }
+
+            /* Add orange line under each section heading */
+            h2 {
+                display: inline-block; /* Make the line only as wide as the heading */
+                border-bottom: 3px solid #f56a6a; /* Orange color for the line */
+                padding-bottom: 5px; /* Add some space between the text and the line */
+                margin-bottom: 20px; /* Space below the line */
+            }
+
+            /* Adjust paragraph and other text content */
+            p {
+                color: #333; /* Dark text for paragraphs */
+                line-height: 1.6; /* Add spacing between lines for easier reading */
+            }
+
+            /* Style for the buttons */
+            .button-container {
+                text-align: center; /* Center the buttons */
+                margin-top: 20px; /* Space above buttons */
+                margin-bottom: 20px;
+            }
+            .button-container .button {
+                display: initial; /* Side-by-side buttons */
+                margin: 0 50px; /* Space between buttons */
+                padding: 10px 20px; /* Smaller padding for smaller buttons */
+                font-size: 14px; /* Smaller font size */
+            }
+
+            /* Style for Education Entry Boxes */
+            .edu-box {
+                background: #fff; /* White background */
+                padding: 15px; /* Padding inside the box */
+                border-radius: 8px; /* Rounded corners */
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for consistency */
+                margin-bottom: 20px; /* Space between entries */
+                text-align: left; /* Left-align content */
+                width: 100%; /* Full width within container */
+                max-width: 1000px; /* Limit maximum width for readability */
+                margin: 0 auto; /* Center the box horizontally on the page */
+            }
+            .edu-box h3 {
+                margin: 0 0 10px 0; /* Space below the university name */
+                color: #222; /* Match heading color */
+            }
+            .edu-box ul {
+                padding-left: 20px; /* Indent list */
+            }
+            .edu-box ul li {
+                margin: 5px 0; /* Space between list items */
+            }
+        </style>
+    </head>
+
+	<body class="is-preload">
+        <div class="container">
+            <!-- Header Section -->
+            <header>
+                <h1 style="text-align: center;">Education</h1>
+                <p style="text-align: center;" class="project-description">A summary of my academic journey and coursework in data analytics and mathematics.</p>
+                <div class="button-container">
+                    <a href="#" target="_blank" class="button">Resume</a>
+                    <a href="#" target="_blank" class="button">Transcripts</a>
+                </div>
+            </header>
+
+            <!-- Education Entries -->
+            <section id="education">
+                <h2>Academic Background</h2>
+                <!-- University of Massachusetts Amherst -->
+                <div class="edu-box">
+                    <h3>University of Massachusetts Amherst</h3>
+                    <p><strong>Master of Science in Data Analytics and Computational Social Science (DACSS)</strong><br>
+                    September 2019 - May 2026 (expected)<br>
+                    GPA: 4.00/4.00</p>
+                    <ul>
+                        <li><strong>Coursework:</strong> Machine Learning, Natural Language Processing, Data Science, Quantitative Analysis, Database Management for Analytics</li>
+                    </ul>
+                </div>
+
+                <!-- Sardar Vallabhbhai National Institute of Technology -->
+                <div class="edu-box">
+                    <h3>Sardar Vallabhbhai National Institute of Technology</h3>
+                    <p><strong>Integrated 5-year Master of Science in Mathematics</strong><br>
+                    August 2019 - June 2024<br>
+                    GPA: 8.26/10 (3.54/4.00)</p>
+                    <ul>
+                        <li><strong>Coursework:</strong> Probability & Statistics, Algebra, Numerical Analysis, Differential Equations, Optimization</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Optional Honors Section -->
+            <section id="honors" style="display: none;">
+                <h2><br>Honors and Awards</h2>
+                <div class="edu-box">
+                    <p>[Add any academic honors, scholarships, or recognitions here, e.g., Dean’s List, Research Grants.]</p>
+                </div>
+            </section>
+
+            <!-- Optional Skills Section -->
+            <section id="skills" style="display: none;">
+                <h2>Skills Acquired</h2>
+                <div class="edu-box">
+                    <p>[List technical skills (e.g., Python, R, SQL) and soft skills (e.g., critical thinking, teamwork) gained during your studies.]</p>
+                </div>
+            </section>
+
+            <!-- Optional Projects Section -->
+            <section id="projects" style="display: none;">
+                <h2>Capstone/Thesis Projects</h2>
+                <div class="edu-box">
+                    <p>[Include details of significant projects or thesis work, e.g., "Credit Card Default Detection" or other research.]</p>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <p>Created by Suryam Gupta. © 2025</p>
+            </footer>
+        </div>
+
+        <script>
+            // Optional: Show/hide sections based on user input or content availability
+            document.addEventListener('DOMContentLoaded', function() {
+                const sections = ['honors', 'skills', 'projects'];
+                sections.forEach(section => {
+                    const elem = document.getElementById(section);
+                    if (elem.innerHTML.trim() === '[Add any academic honors...' || elem.innerHTML.trim() === '') {
+                        elem.style.display = 'none';
+                    } else {
+                        elem.style.display = 'block';
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
