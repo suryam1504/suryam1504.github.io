@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Research Publications</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        /* Add custom styles for the border */
+        .container {
+            border: 5px solid #333; /* Dark border color */
+            padding: 25px; /* Add some padding inside the border */
+            margin: 75px; /* Add space between the border and page edges */
+            border-radius: 50px; /* Rounded corners */
+            background-color: #fff; /* White background for the container */
+            color: #555; /* Dark text color for better readability */
+        }
+
+        /* Set background color for the whole page and text color */
+        body {
+            background-color: #f4f4f4; /* Light gray background for the page */
+            color: #333; /* Set a darker text color globally */
+            font-family: Arial, sans-serif; /* Set a clean and readable font */
+        }
+
+        /* Set dark color for all headings */
+        h1, h2, h3 {
+            color: #222; /* Darker color for headings */
+        }
+
+        /* Add orange line under each section heading */
+        h2 {
+            display: inline-block; /* Make the line only as wide as the heading */
+            border-bottom: 3px solid #f56a6a; /* Orange color for the line */
+            padding-bottom: 5px; /* Add some space between the text and the line */
+            margin-bottom: 20px; /* Space below the line */
+        }
+
+        /* Adjust paragraph and other text content */
+        p {
+            color: #333; /* Dark text for paragraphs */
+            line-height: 1.6; /* Add spacing between lines for easier reading */
+        }
+
+        /* Style for the buttons */
+        .button-container {
+            text-align: center; /* Center the buttons */
+            margin-top: 20px; /* Space above buttons */
+            margin-bottom: 20px;
+        }
+        .button-container .button {
+            display: initial; /* Side-by-side buttons */
+            margin: 0 50px; /* Space between buttons */
+            padding: 10px 20px; /* Smaller padding for smaller buttons */
+            font-size: 14px; /* Smaller font size */
+        }
+
+        /* Style for publication list */
+        ul.pub-list {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        ul.pub-list li {
+            margin-bottom: 15px; /* Space between list items */
+        }
+        ul.pub-list a {
+            color: #f56a6a; /* Orange color for links */
+            text-decoration: none;
+        }
+        ul.pub-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body class="is-preload">
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1 style="text-align: center;">Research Publications</h1>
+            <p style="text-align: center;" class="project-description">A collection of my published research work in data science and related fields.</p>
+            <div class="button-container">
+                <!--<a href="#" target="_blank" class="button">Google Scholar</a>-->
+                <!--<a href="#" target="_blank" class="button">Full Papers</a>-->
+            </div>
+        </header>
+
+        <!-- Publications Section -->
+        <section id="publications">
+            <h2>Published Works</h2>
+            <ul class="pub-list">
+                <li><strong>Mitrović, S., Frisone, F., Gupta, S., Lucifora, C., Čarapić, D., Schillaci, C., ... & Singh, A.</strong> (2023, December). 
+                    <em>Annotating Panic in Social Media using Active Learning, Transformers and Domain Knowledge</em>. In <em>2023 IEEE International 
+                        Conference on Data Mining Workshops (ICDMW)</em> (pp. 1269-1278). IEEE. <br>
+                        <a href="https://ieeexplore.ieee.org/abstract/document/10411628" target="_blank">Link to Publication</a></li>
+            </ul>
+
+            <!-- Placeholder for Future Publications -->
+            <div id="future-pubs" style="display: none;">
+                <ul class="pub-list">
+                    <li>[Additional publications will be listed here as they become available.]</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Created by Suryam Gupta. © 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // Optional: Show future publications section if content is added
+        document.addEventListener('DOMContentLoaded', function() {
+            const futurePubs = document.getElementById('future-pubs');
+            if (futurePubs.innerHTML.trim() === '[Additional publications will be listed...') {
+                futurePubs.style.display = 'none';
+            } else {
+                futurePubs.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -62,11 +62,12 @@
                 padding: 15px; /* Padding inside the box */
                 border-radius: 8px; /* Rounded corners */
                 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for consistency */
-                margin-bottom: 20px; /* Space between entries */
+                margin-bottom: 60px; /* Increased space between entries */
                 text-align: left; /* Left-align content */
                 width: 100%; /* Full width within container */
                 max-width: 1000px; /* Limit maximum width for readability */
-                margin: 0 auto; /* Center the box horizontally on the page */
+                margin: 0 auto 60px; /* Center the box horizontally and add bottom margin */
+                position: relative; /* For positioning the timeline elements */
             }
             .edu-box h3 {
                 margin: 0 0 10px 0; /* Space below the university name */
@@ -74,9 +75,73 @@
             }
             .edu-box ul {
                 padding-left: 20px; /* Indent list */
+                margin-top: 5px; /* Reduce space after GPA */
             }
             .edu-box ul li {
                 margin: 5px 0; /* Space between list items */
+            }
+            
+            /* Timeline connector styles */
+            .timeline-connector {
+                position: absolute;
+                left: 50%;
+                bottom: -60px; /* Position below the box */
+                width: 2px; /* Line width */
+                height: 50px; /* Line height */
+                background-color: #f56a6a; /* Match the header line color */
+                transform: translateX(-50%); /* Center the line */
+                z-index: 1; /* Ensure it's above the background */
+            }
+            
+            /* Timeline dot styles */
+            .timeline-dot {
+                position: absolute;
+                left: 50%;
+                bottom: -35px; /* Position in the middle of the line */
+                width: 12px; /* Dot size */
+                height: 12px; /* Dot size */
+                background-color: #f56a6a; /* Match the line color */
+                border-radius: 50%; /* Make it a circle */
+                transform: translateX(-50%); /* Center the dot */
+                z-index: 2; /* Ensure it's above the line */
+            }
+            
+            /* Last edu-box should not have a connector */
+            .edu-box:last-of-type .timeline-connector,
+            .edu-box:last-of-type .timeline-dot {
+                display: none;
+            }
+            
+            /* Read more link style */
+            .read-more {
+                display: block;
+                margin-top: 10px;
+                color: #f56a6a;
+                cursor: pointer;
+                font-weight: bold;
+                text-decoration: none;
+            }
+            
+            /* Style for the expandable content */
+            .expandable-content {
+                display: none;
+                padding-top: 15px;
+                border-top: 1px dashed #ddd;
+                margin-top: 15px;
+            }
+            
+            /* Style for roles and experiences */
+            .role {
+                margin-bottom: 20px;
+            }
+            
+            .role h4 {
+                margin: 0 0 5px 0;
+                color: #444;
+            }
+            
+            .role p {
+                margin: 5px 0;
             }
         </style>
     </head>
@@ -88,8 +153,8 @@
                 <h1 style="text-align: center;">Education</h1>
                 <p style="text-align: center;" class="project-description">A summary of my academic journey and coursework in data analytics and mathematics.</p>
                 <div class="button-container">
-                    <a href="#" target="_blank" class="button">Resume</a>
-                    <a href="#" target="_blank" class="button">Transcripts</a>
+                    <a href="https://drive.google.com/file/d/1uvKHSPMKwyqxS_5RxV7wvwxrrcFSur2r/view?usp=sharing" target="_blank" class="button">UMASS Transcript</a>
+                    <a href="https://drive.google.com/file/d/10QZVWQgENjXir1ea0fCeRG1p6YxpAmuF/view?usp=sharing" target="_blank" class="button">SVNIT Transcript</a>
                 </div>
             </header>
 
@@ -98,32 +163,99 @@
                 <h2>Academic Background</h2>
                 <!-- University of Massachusetts Amherst -->
                 <div class="edu-box">
-                    <h3>University of Massachusetts Amherst</h3>
+                    <h3><a href="https://www.umass.edu/" target="_blank">University of Massachusetts Amherst</a></h3>
                     <p><strong>Master of Science in Data Analytics and Computational Social Science (DACSS)</strong><br>
-                    September 2019 - May 2026 (expected)<br>
-                    GPA: 4.00/4.00</p>
-                    <ul>
-                        <li><strong>Coursework:</strong> Machine Learning, Natural Language Processing, Data Science, Quantitative Analysis, Database Management for Analytics</li>
-                    </ul>
+                    September 2024 - May 2026 (expected)<br>
+                    GPA: 4.00/4.00<br><br>
+                    <strong>Coursework:</strong> Machine Learning, Natural Language Processing, Data Science, Quantitative Analysis, Database Management for Analytics</p>
+                    
+                    
+                    <a class="read-more" onclick="toggleContent(this)">Read more...</a>
+                    <div class="expandable-content">
+                        <div class="role">
+                            <h4>Graduate Research Assistant</h4>
+                            <p>Feb 2025 - Present</p>
+                            <p>Researching under Prof. Dr. Omer Yalcin at the School of Social and Behavioral Sciences.</p>
+                            <ul><li>Developing a machine learning model to automate the detection of politically motivated edits on Wikipedia, identifying 
+                                whether modifications were made to enhance or undermine a politician's public image.</li></ul>
+                        </div>
+                        
+                        <div class="role">
+                            <h4>Graduate Tutor & Consultant</h4>
+                            <p>Sep 2024 - Present</p>
+                            <p>Teaching Assistant for my program Data Analytics and Computational Social Science (DACSS), previously for the course DACSS 758 Text as Data, and currently for DACSS 601 Data Science Fundamentals.</p>
+                            <ul>
+                                <li>Provide targeted tutoring and consultation to 60+ DACSS graduate students, assisting with Python, R, and statistical methodologies for Data Science, Quantitative Analysis, and Natural Language Processing coursework.</li>
+                                <li>Work closely with students on assignments and projects, supporting their development in data manipulation, visualization, and modeling to build their confidence and analytical skills.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline connector elements -->
+                    <div class="timeline-connector"></div>
+                    <div class="timeline-dot"></div>
                 </div>
 
                 <!-- Sardar Vallabhbhai National Institute of Technology -->
                 <div class="edu-box">
-                    <h3>Sardar Vallabhbhai National Institute of Technology</h3>
+                    <h3><a href="https://www.svnit.ac.in/" target="_blank">Sardar Vallabhbhai National Institute of Technology</a></h3>
                     <p><strong>Integrated 5-year Master of Science in Mathematics</strong><br>
                     August 2019 - June 2024<br>
-                    GPA: 8.26/10 (3.54/4.00)</p>
-                    <ul>
-                        <li><strong>Coursework:</strong> Probability & Statistics, Algebra, Numerical Analysis, Differential Equations, Optimization</li>
-                    </ul>
+                    GPA: 8.26/10 (3.54/4.00)<br><br>
+                    <strong>Coursework:</strong> Probability & Statistics, Algebra, Numerical Analysis, Differential Equations, Optimization</p>
+                    
+                    <a class="read-more" onclick="toggleContent(this)">Read more...</a>
+                    <div class="expandable-content">
+                        <h4>CLUBS</h4>
+                        
+                        <div class="role">
+                            <h4>Society for Cultivation of Science and Humanities (SCOSH), SVNIT | Senior Core Member</h4>
+                            <p>Sept 2020 - Mar 2022</p>
+                            <p>Student chapter that aims to develop and nurture scientific temperament among students</p>
+                            <ul>
+                                <li>Organized and delivered a lecture on Python libraries; NumPy and pandas, to 100+ students.</li>
+                                <li>Organized and managed various events such as InQuest, Prakriti, BEYOND, Science Hunt, and academic workshops (Python, MATLAB) & webinars.</li>
+                                <li>Held the position of Magazine and Newsletter Editor of the club.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="role">
+                            <h4>Kirdaar, Centre for Human Resource Development (CHRD), SVNIT</h4>
+                            <p>Nov 2019 - May 2020</p>
+                            <p>Drama club under the student chapter that inculcates aesthetic values in the students and creates human resources.</p>
+                            <ul>
+                                <li>Participated in Nukkad Natak (Street Play) to raise awareness on the topic 'Nepotism.'</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="role">
+                            <h4>Youth for Planet, SVNIT | Senior Member</h4>
+                            <p>Sept 2019 - Mar 2020</p>
+                            <p>Student-driven initiative addressing environmental causes, fostering sustainable development, and addressing climate issues through various impactful projects.</p>
+                            <ul>
+                                <li>Collected funds for the Bihar Flood Relief in 2019.</li>
+                                <li>Conducted campus-wide waste cleanup drives and tree-planting campaigns.</li>
+                                <li>Part of educational visits to city greenhouses and Morning Sports Culture for better student health.</li>
+                            </ul>
+                        </div>
+                        
+                        <h4>TALKS & LEADERSHIP ROLES</h4>
+                        <ul>
+                            <li>Delivered a talk on "Getting started with Natural Language Processing (NLP) and its applications" in the 59th IntERAct (Internship Experience and Research Activities) seminar organized by the Department of Mathematics, SVNIT. (2023)</li>
+                            <li>Delivered a talk on "Real-World Application of Linear and Integer Optimization using Python" in the 53rd IntERAct seminar, SVNIT. (2022)</li>
+                            <li>Class Representative (CR) of the SVNIT batch for 2 years. (2019-2021)</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
             <!-- Optional Honors Section -->
             <section id="honors" style="display: none;">
-                <h2><br>Honors and Awards</h2>
+                <h2>Honors and Awards</h2>
                 <div class="edu-box">
-                    <p>[Add any academic honors, scholarships, or recognitions here, e.g., Dean’s List, Research Grants.]</p>
+                    <h3><a href="https://drive.google.com/file/d/1iAAkqGrdCfCbWJO0enL0U4JR4l3AM6vZ/view?usp=sharing" target="_blank">Swissnex ThinkSwiss Research Scholarships</a></h3>
+                    Received Swissnex ThinkSwiss Research Scholarships: Asia-Pacific of worth USD 4,500 to conduct research work at IDSIA, USI-SUPSI, Switzerland.<br>
+                    May 2023</p>
                 </div>
             </section>
 
@@ -155,13 +287,25 @@
                 const sections = ['honors', 'skills', 'projects'];
                 sections.forEach(section => {
                     const elem = document.getElementById(section);
-                    if (elem.innerHTML.trim() === '[Add any academic honors...' || elem.innerHTML.trim() === '') {
+                    if (elem.innerHTML.includes('[Add any academic honors...') || elem.innerHTML.includes('[List technical skills') || elem.innerHTML.includes('[Include details of significant projects')) {
                         elem.style.display = 'none';
                     } else {
                         elem.style.display = 'block';
                     }
                 });
             });
+            
+            // Toggle expandable content
+            function toggleContent(element) {
+                const content = element.nextElementSibling;
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    element.textContent = 'Read more...';
+                } else {
+                    content.style.display = 'block';
+                    element.textContent = 'Read less...';
+                }
+            }
         </script>
     </body>
 </html>
