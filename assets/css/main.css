@@ -1218,11 +1218,15 @@ input[type="radio"] + label:before {
   /*position: relative;*/ 
   max-width: 100%;
   height: auto;
-  overflow: hidden;}
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;}
   .image img {
-    border-radius: 0.375em;
-    display: block; }
-  .image.left, .image.right {
+    /*border-radius: 0.375em;*/
+    display: block; 
+    height: auto}
+  /*.image.left, .image.right {
     max-width: 40%; }
     .image.left img, .image.right img {
       width: 100%; }
@@ -1245,7 +1249,7 @@ input[type="radio"] + label:before {
     margin: 0 0 3em 0;
     width: 100%; }
     .image.main img {
-      width: 100%; }
+      width: 100%; }*/
 
 a.image {
   overflow: hidden; }
