@@ -7,112 +7,94 @@
     	<link rel="stylesheet" href="assets/css/main.css" />
     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     	<style>
-            /* Add custom styles for the border */
+            html {
+                scroll-behavior: smooth;
+            }
             .container {
-                border: 5px solid #333; /* Dark border color */
-                padding: 25px;  /* Add some padding inside the border */
-                margin: 75px;   /* Add space between the border and page edges */
-                border-radius: 50px; /* Rounded corners */
-                background-color: #fff; /* White background for the container */
-                color: #555; /* Dark text color for better readability */
+                border: 5px solid #333;
+                padding: 25px;
+                margin: 75px;
+                border-radius: 50px;
+                background-color: #fff;
+                color: #555;
             }
-
-            /* Set background color for the whole page and text color */
             body {
-                background-color: #f4f4f4; /* Light gray background for the page */
-                color: #333; /* Set a darker text color globally */
-                font-family: Arial, sans-serif; /* Set a clean and readable font */
+                background-color: #f4f4f4;
+                color: #333;
+                font-family: Arial, sans-serif;
             }
-
-            /* Set dark color for all headings */
             h1, h2, h3 {
-                color: #222; /* Darker color for headings */
+                color: #222;
             }
-
-            /* Add orange line under each section heading */
             h2 {
-                display: inline-block; /* Make the line only as wide as the heading */
-                border-bottom: 3px solid #f56a6a; /* Orange color for the line */
-                padding-bottom: 5px; /* Add some space between the text and the line */
-                margin-bottom: 20px; /* Space below the line */
+                display: inline-block;
+                border-bottom: 3px solid #f56a6a;
+                padding-bottom: 5px;
+                margin-bottom: 20px;
             }
-
-            /* Adjust paragraph and other text content */
             p {
-                color: #333; /* Dark text for paragraphs */
-                line-height: 1.6; /* Add spacing between lines for easier reading */
+                color: #333;
+                line-height: 1.6;
             }
-
-            /* Style for the buttons */
             .button-container {
-                text-align: center; /* Center the buttons */
-                margin-top: 20px; /* Space above buttons */
+                text-align: center;
+                margin-top: 20px;
                 margin-bottom: 20px;
             }
             .button-container .button {
-                display: initial; /* Side-by-side buttons */
-                margin: 0 50px; /* Space between buttons */
-                padding: 10px 20px; /* Smaller padding for smaller buttons */
-                font-size: 14px; /* Smaller font size */
+                display: initial;
+                margin: 0 50px;
+                padding: 10px 20px;
+                font-size: 14px;
             }
-
-            /* Style for Education Entry Boxes */
             .edu-box {
-                background: #fff; /* White background */
-                padding: 15px; /* Padding inside the box */
-                border-radius: 8px; /* Rounded corners */
-                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for consistency */
-                margin-bottom: 60px; /* Increased space between entries */
-                text-align: left; /* Left-align content */
-                width: 100%; /* Full width within container */
-                max-width: 1000px; /* Limit maximum width for readability */
-                margin: 0 auto 60px; /* Center the box horizontally and add bottom margin */
-                position: relative; /* For positioning the timeline elements */
+                background: #fff;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+                margin-bottom: 60px;
+                text-align: left;
+                width: 100%;
+                max-width: 1000px;
+                margin: 0 auto 60px;
+                position: relative;
             }
             .edu-box h3 {
-                margin: 0 0 10px 0; /* Space below the university name */
-                color: #222; /* Match heading color */
+                margin: 0 0 10px 0;
+                color: #222;
             }
             .edu-box ul {
-                padding-left: 20px; /* Indent list */
-                margin-top: 5px; /* Reduce space after GPA */
+                padding-left: 20px;
+                margin-top: 5px;
             }
             .edu-box ul li {
-                margin: 5px 0; /* Space between list items */
+                margin: 5px 0;
             }
-            
-            /* Timeline connector styles */
             .timeline-connector {
                 position: absolute;
                 left: 50%;
-                bottom: -60px; /* Position below the box */
-                width: 2px; /* Line width */
-                height: 50px; /* Line height */
-                background-color: #f56a6a; /* Match the header line color */
-                transform: translateX(-50%); /* Center the line */
-                z-index: 1; /* Ensure it's above the background */
+                bottom: -60px;
+                width: 2px;
+                height: 50px;
+                background-color: #f56a6a;
+                transform: translateX(-50%);
+                z-index: 1;
             }
-            
-            /* Timeline dot styles */
             .timeline-dot {
                 position: absolute;
                 left: 50%;
-                bottom: -35px; /* Position in the middle of the line */
-                width: 12px; /* Dot size */
-                height: 12px; /* Dot size */
-                background-color: #f56a6a; /* Match the line color */
-                border-radius: 50%; /* Make it a circle */
-                transform: translateX(-50%); /* Center the dot */
-                z-index: 2; /* Ensure it's above the line */
+                bottom: -35px;
+                width: 12px;
+                height: 12px;
+                background-color: #f56a6a;
+                border-radius: 50%;
+                transform: translateX(-50%);
+                z-index: 2;
             }
-            
-            /* Last edu-box should not have a connector */
             .edu-box:last-of-type .timeline-connector,
             .edu-box:last-of-type .timeline-dot {
                 display: none;
             }
-            
-            /* Read more link style */
             .read-more {
                 display: block;
                 margin-top: 10px;
@@ -121,42 +103,58 @@
                 font-weight: bold;
                 text-decoration: none;
             }
-            
-            /* Style for the expandable content */
             .expandable-content {
                 display: none;
                 padding-top: 15px;
                 border-top: 1px dashed #ddd;
                 margin-top: 15px;
             }
-            
-            /* Style for roles and experiences */
             .role {
                 margin-bottom: 20px;
             }
-            
             .role h4 {
                 margin: 0 0 5px 0;
                 color: #444;
             }
-            
             .role p {
                 margin: 5px 0;
+            }
+            /* Back Button Styles */
+            .back-button {
+                position: absolute;
+                top: 20px;
+                left: 30px;
+                font-size: 30px;
+                color: #f56a6a;
+                text-decoration: none;
+                z-index: 10;
+                transition: color 0.3s ease;
+            }
+            .back-button:hover {
+                color: #d45252;
+            }
+            header {
+                position: relative;
+                padding-top: 5px; /* Space for the back button */
             }
         </style>
     </head>
 
 	<body class="is-preload">
+        <!-- Header Section (Back Button Only) -->
+        <header>
+            <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i></a>
+        </header>
+
+        <!-- Container with Education Content -->
         <div class="container">
-            <!-- Header Section -->
-            <header>
-                <h1 style="text-align: center;">Education</h1>
-                <p style="text-align: center;" class="project-description">A summary of my academic journey and coursework in data analytics and mathematics.</p>
-                <div class="button-container">
-                    <a href="https://drive.google.com/file/d/1uvKHSPMKwyqxS_5RxV7wvwxrrcFSur2r/view?usp=sharing" target="_blank" class="button">UMASS Transcript</a>
-                    <a href="https://drive.google.com/file/d/10QZVWQgENjXir1ea0fCeRG1p6YxpAmuF/view?usp=sharing" target="_blank" class="button">SVNIT Transcript</a>
-                </div>
-            </header>
+            <!-- Moved Header Content Inside Container -->
+            <h1 style="text-align: center;">Education</h1>
+            <p style="text-align: center;" class="project-description">A summary of my academic journey and coursework in data analytics and mathematics.</p>
+            <div class="button-container">
+                <a href="https://drive.google.com/file/d/1uvKHSPMKwyqxS_5RxV7wvwxrrcFSur2r/view?usp=sharing" target="_blank" class="button">UMASS Transcript</a>
+                <a href="https://drive.google.com/file/d/10QZVWQgENjXir1ea0fCeRG1p6YxpAmuF/view?usp=sharing" target="_blank" class="button">SVNIT Transcript</a>
+            </div>
 
             <!-- Education Entries -->
             <section id="education">
@@ -168,8 +166,6 @@
                     September 2024 - May 2026 (expected)<br>
                     GPA: 4.00/4.00<br><br>
                     <strong>Coursework:</strong> Machine Learning, Natural Language Processing, Data Science, Quantitative Analysis, Database Management for Analytics</p>
-                    
-                    
                     <a class="read-more" onclick="toggleContent(this)">Read more...</a>
                     <div class="expandable-content">
                         <div class="role">
@@ -179,7 +175,6 @@
                             <ul><li>Developing a machine learning model to automate the detection of politically motivated edits on Wikipedia, identifying 
                                 whether modifications were made to enhance or undermine a politician's public image.</li></ul>
                         </div>
-                        
                         <div class="role">
                             <h4>Graduate Tutor & Consultant</h4>
                             <p>Sep 2024 - Present</p>
@@ -190,8 +185,6 @@
                             </ul>
                         </div>
                     </div>
-                    
-                    <!-- Timeline connector elements -->
                     <div class="timeline-connector"></div>
                     <div class="timeline-dot"></div>
                 </div>
@@ -203,11 +196,9 @@
                     August 2019 - June 2024<br>
                     GPA: 8.26/10 (3.54/4.00)<br><br>
                     <strong>Coursework:</strong> Probability & Statistics, Algebra, Numerical Analysis, Differential Equations, Optimization</p>
-                    
                     <a class="read-more" onclick="toggleContent(this)">Read more...</a>
                     <div class="expandable-content">
                         <h4>CLUBS</h4>
-                        
                         <div class="role">
                             <h4>Society for Cultivation of Science and Humanities (SCOSH), SVNIT | Senior Core Member</h4>
                             <p>Sept 2020 - Mar 2022</p>
@@ -218,7 +209,6 @@
                                 <li>Held the position of Magazine and Newsletter Editor of the club.</li>
                             </ul>
                         </div>
-                        
                         <div class="role">
                             <h4>Kirdaar, Centre for Human Resource Development (CHRD), SVNIT</h4>
                             <p>Nov 2019 - May 2020</p>
@@ -227,7 +217,6 @@
                                 <li>Participated in Nukkad Natak (Street Play) to raise awareness on the topic 'Nepotism.'</li>
                             </ul>
                         </div>
-                        
                         <div class="role">
                             <h4>Youth for Planet, SVNIT | Senior Member</h4>
                             <p>Sept 2019 - Mar 2020</p>
@@ -238,7 +227,6 @@
                                 <li>Part of educational visits to city greenhouses and Morning Sports Culture for better student health.</li>
                             </ul>
                         </div>
-                        
                         <h4>TALKS & LEADERSHIP ROLES</h4>
                         <ul>
                             <li>Delivered a talk on "Getting started with Natural Language Processing (NLP) and its applications" in the 59th IntERAct (Internship Experience and Research Activities) seminar organized by the Department of Mathematics, SVNIT. (2023)</li>
@@ -281,8 +269,13 @@
             </footer>
         </div>
 
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
         <script>
-            // Optional: Show/hide sections based on user input or content availability
             document.addEventListener('DOMContentLoaded', function() {
                 const sections = ['honors', 'skills', 'projects'];
                 sections.forEach(section => {
@@ -294,8 +287,6 @@
                     }
                 });
             });
-            
-            // Toggle expandable content
             function toggleContent(element) {
                 const content = element.nextElementSibling;
                 if (content.style.display === 'block') {
@@ -307,5 +298,5 @@
                 }
             }
         </script>
-    </body>
+	</body>
 </html>

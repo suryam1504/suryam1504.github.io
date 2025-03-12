@@ -101,20 +101,41 @@
                 overflow-wrap: break-word; /* Allow text to wrap within the box */
                 word-break: break-word; /* Ensure long words break */
             }
+
+            /* Back Button Styles */
+            .back-button {
+                position: absolute;
+                top: 20px;
+                left: 30px;
+                font-size: 30px;
+                color: #f56a6a;
+                text-decoration: none;
+                z-index: 10;
+                transition: color 0.3s ease;
+            }
+            .back-button:hover {
+                color: #d45252;
+            }
+            header {
+                position: relative;
+                padding-top: 5px; /* Space for the back button */
+            }
         </style>
     </head>
 
 	<body class="is-preload">
-        <div class="container">
 		<!-- Header Section -->
         <header>
+            <a href="index.html#all-projects" class="back-button"><i class="fas fa-arrow-left"></i></a>
+        </header>
+        <div class="container">
             <h1 style="text-align: center;">A Study on Sentiment, Length, and Readability in Movie Reviews</h1>
-            <p style="text-align: center;" class="project-description">This study analyzes how textual metrics such as Sentiment Polarity, Review Length, and Readability Score affect user engagement in Amazon Movie Reviews.</p>
+            <p style="text-align: center; font-weight: 150; text-transform: uppercase;" class="project-description">This study analyzes how textual metrics such as Sentiment Polarity, Review Length, and Readability Score affect user engagement in Amazon Movie Reviews.</p>
             <div class="button-container">
                 <a href="https://github.com/suryam1504/A-Study-on-Sentiment-Length-and-Readability-in-Movie-Reviews" target="_blank" class="button">GitHub</a>
                 <a href="DACSS758_report.html" target="_blank" class="button">Detailed Report</a>
-            </div>
-        </header>
+        </div>
+        
 
         <!-- Background Section -->
         <section id="background">

@@ -156,24 +156,45 @@
                 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow for consistency */
                 border-radius: 8px; /* Match other box styles */
             }
+
+            /* Back Button Styles */
+            .back-button {
+                position: absolute;
+                top: 20px;
+                left: 30px;
+                font-size: 30px;
+                color: #f56a6a;
+                text-decoration: none;
+                z-index: 10;
+                transition: color 0.3s ease;
+            }
+            .back-button:hover {
+                color: #d45252;
+            }
+            header {
+                position: relative;
+                padding-top: 5px; /* Space for the back button */
+            }
         </style>
     </head>
 
 	<body class="is-preload">
-        <div class="container">
             <!-- Header Section -->
             <header>
+                <a href="index.html#all-projects" class="back-button"><i class="fas fa-arrow-left"></i></a>
+            </header>
+            <div class="container">
                 <h1 style="text-align: center;">Linear & Integer Optimization using Python PuLP and AMPL</h1>
-                <p style="text-align: center;" class="project-description">This project explores 16 real-life optimization problems, modeling them mathematically and solving them using CBC and CPLEX solvers via AMPL software and Python's PuLP library.</p>
+                <p style="text-align: center; font-weight: 150; text-transform: uppercase;" class="project-description">This project explores 16 real-life optimization problems, modeling them mathematically and solving them using CBC and CPLEX solvers via AMPL software and Python's PuLP library.</p>
                 <div class="button-container">
                     <a href="https://github.com/suryam1504/IIMA-Linear-Integer-Optimization-using-Python-PuLP-and-AMPL" target="_blank" class="button">GitHub</a>
                     <!--<a href="mailto:suryamgupta12345@gmail.com" class="button">Contact Me</a>-->
-                </div>
-            </header>
+            </div>
+        
 
             <!-- 16 Problems Individually Section -->
             <section id="problems-individually">
-                <h2><br>16 Problems</h2>
+                <h2>16 Problems</h2>
                 <ol>
                     <li><a href="https://drive.google.com/file/d/1XGwbsR0aWLtVt2ODMmPXsn2km5WAm0oX/view?usp=sharing" target="_blank">Bluesky - Bluesky Airlines Problem PDF</a>&nbsp&nbsp&nbsp&nbsp&nbsp             
                     <a href="https://drive.google.com/file/d/1GVsbi964yaRbUkiDBg4Kv9dQbxqKxTOA/view?usp=sharing" target="_blank">Bluesky - 1-2 Bluesky Afterclass PDF</a> </li>

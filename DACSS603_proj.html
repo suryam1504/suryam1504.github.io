@@ -117,21 +117,42 @@
                 text-align: center;
             }
 
+            /* Back Button Styles */
+            .back-button {
+                position: absolute;
+                top: 20px;
+                left: 30px;
+                font-size: 30px;
+                color: #f56a6a;
+                text-decoration: none;
+                z-index: 10;
+                transition: color 0.3s ease;
+            }
+            .back-button:hover {
+                color: #d45252;
+            }
+            header {
+                position: relative;
+                padding-top: 5px; /* Space for the back button */
+            }
+
         </style>
     </head>
 
 	<body class="is-preload">
-        <div class="container">
+        
 		<!-- Header Section -->
         <header>
+            <a href="index.html#all-projects" class="back-button"><i class="fas fa-arrow-left"></i></a>
+        </header>
+        <div class="container">
             <h1 style="text-align: center;">A Causal Inference Analysis of Parental Education and Study Time on Academic Success</h1>
-            <p style="text-align: center;" class="project-description">An inferential analysis on how a student's academic (study-time) and demographic (father's and mother's education level) factors (individually) affect their school performance.</p>
+            <p style="text-align: center; font-weight: 150; text-transform: uppercase;" class="project-description">An inferential analysis on how a student's academic (study-time) and demographic (father's and mother's education level) factors (individually) affect their school performance.</p>
             <div class="button-container">
                 <a href="https://github.com/suryam1504/A-Causal-Inference-Analysis-of-Parental-Education-and-Study-Time-on-Academic-Success" target="_blank" class="button">GitHub</a>
                 <a href="DACSS603_report.html" target="_blank" class="button">Detailed Report</a>
-            </div>
-        </header>
-
+        </div>
+        
         <!-- Background Section -->
         <section id="background">
             <h2>Background</h2>

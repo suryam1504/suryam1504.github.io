@@ -140,20 +140,41 @@
             .table-box tr:hover {
                 background-color: #f9f9f9; /* Light gray on hover for readability */
             }
+
+            /* Back Button Styles */
+            .back-button {
+                position: absolute;
+                top: 20px;
+                left: 30px;
+                font-size: 30px;
+                color: #f56a6a;
+                text-decoration: none;
+                z-index: 10;
+                transition: color 0.3s ease;
+            }
+            .back-button:hover {
+                color: #d45252;
+            }
+            header {
+                position: relative;
+                padding-top: 5px; /* Space for the back button */
+            }
         </style>
     </head>
 
 	<body class="is-preload">
-        <div class="container">
             <!-- Header Section -->
             <header>
+                <a href="index.html#all-projects" class="back-button"><i class="fas fa-arrow-left"></i></a>
+            </header>
+            <div class="container">
                 <h1 style="text-align: center;">Analyzing Amazon Reviews, Textual Metrics, and User’s Perceived Helpfulness</h1>
-                <p style="text-align: center;" class="project-description">This study analyzes factors influencing review helpfulness using the Amazon Review/Product Dataset, focusing on Cell Phones and Accessories and Video Games categories with advanced text analysis and modeling techniques.</p>
+                <p style="text-align: center; font-weight: 150; text-transform: uppercase;" class="project-description">This study analyzes factors influencing review helpfulness using the Amazon Review/Product Dataset, focusing on Cell Phones and Accessories and Video Games categories with advanced text analysis and modeling techniques.</p>
                 <div class="button-container">
                     <a href="https://github.com/suryam1504/IIMN-Analyzing-Amazon-Reviews-Textual-Metrics-and-Users-Perceived-Helpfulness" target="_blank" class="button">GitHub</a>
                     <a href="IIMN_Amazon_Review_NLP_Report.html" target="_blank" class="button">Detailed Report</a>
                 </div>
-            </header>
+            
 
             <!-- Background Section -->
             <section id="background">
@@ -187,51 +208,48 @@
 
             <!-- Data Pre-processing and Cleaning Section -->
             <section id="data-preprocessing">
-                <h2>Data Pre-processing and Cleaning</h2>
-                <p>JSON files were converted to Python dataframes. Duplicates were removed to avoid data contamination. Review and metadata were merged using ASIN numbers. Unimportant columns and rows with NaN or numeric values in 'reviewText' were dropped. NaN votes were replaced with zero. Post-cleaning, Cell Phones and Accessories had 1,041,169 rows and 18 columns, while Video Games had 28,133 rows and 28 columns.</p>
-            </section>
-
-            <!-- Exploratory Data Analysis (EDA) Section -->
-            <section id="eda">
-                <h2>Exploratory Data Analysis (EDA)</h2>
-                <p>EDA processed 'reviewText' by extracting sentence count, removing stopwords and numbers, converting to lowercase, applying lemmatization, and calculating word and unique word counts. The 'rank' column was mined to extract product rank and category/sub-category names for enhanced feature analysis.</p>
+                <h2>Data Cleaning, Pre-processing, and EDA</h2>
+                <p>JSON files were converted to Python dataframes. Duplicates were removed to avoid data contamination. Review and metadata were merged using ASIN numbers. 
+                    Unimportant columns and rows with NaN or numeric values in 'reviewText' were dropped. NaN votes were replaced with zero. Post-cleaning, Cell Phones and 
+                    Accessories had 1,041,169 rows and 18 columns, while Video Games had 28,133 rows and 28 columns.<br>
+                    EDA processed 'reviewText' by extracting sentence count, removing stopwords and numbers, converting to lowercase, applying lemmatization, and calculating word 
+                    and unique word counts. The 'rank' column was mined to extract product rank and category/sub-category names for enhanced feature analysis.</p>
             </section>
 
             <!-- Linguistic Inquiry and Word Count (LIWC) Section -->
             <section id="liwc">
-                <h2>Linguistic Inquiry and Word Count (LIWC)</h2>
-                <p>LIWC provides insights into review text through features like Analytical thinking, Emotional Tone, and Past Focus, measured as word percentages (Cronbach’s α) or binary presence (Kuder-Richardson Formula 20). These, with EDA attributes, support Linear Regression or Neural Network models to correlate features with votes.</p>
-            </section>
-
-            <!-- Sentiment Analysis, NER, FRE Section -->
-            <section id="sentiment-ner-fre">
-                <h2>Sentiment Analysis, NER, FRE</h2>
-                <p>Sentiment Analysis assesses balance via LIWC’s positive/negative tone ratio. Named Entity Recognition (NER) with spaCy counts entities (e.g., names, locations). Flesch Reading Ease (FRE) evaluates readability: FRE = 206.835 - (1.015 * Avg. words per sentence) - (84.6 * Avg. syllables per word), with higher scores indicating easier reading.</p>
-            </section>
-
-            <!-- Model Section -->
-            <section id="model">
-                <h2>Model and Findings</h2>
-                <p>Features affecting perceived helpfulness (votes) include:</p>
-                <ol>
-                    <li><strong>Review Writing Style (Analytic):</strong> LIWC’s Analytic score (0-100) measures logical thinking; higher scores positively correlate with votes, enhancing trust and clarity.</li>
-                    <li><strong>Review Length (WPS):</strong> Words per sentence shows a curvilinear relationship; moderate lengths optimize helpfulness, while extremes reduce it.</li>
-                    <li><strong>Review Readability (FRE):</strong> FRE exhibits a curvilinear relationship; moderate readability balances simplicity and depth, maximizing votes.</li>
-                    <li><strong>Review Balance:</strong> Ratio of positive to negative tone is curvilinear; balanced reviews (acknowledging pros and cons) are deemed most helpful.</li>
-                    <li><strong>Review Breadth:</strong> Topic count via LDA is curvilinear; moderate topics provide depth without confusion, boosting helpfulness.</li>
-                    <li><strong>Verified Purchase:</strong> Dummy variable (1 = TRUE, 0 = FALSE) positively correlates with votes, indicating higher credibility.</li>
-                    <li><strong>Number of Entities:</strong> NER count positively correlates with votes; detailed entity mentions enhance informativeness.</li>
-                    <li><strong>Review with Image:</strong> Dummy variable (1 = with image, 0 = without) highly positively correlates with votes, adding visual credibility.</li>
-                </ol>
+                <h2><a href="https://www.liwc.app/" target="_blank">Linguistic Inquiry and Word Count (LIWC) - 22 <i class="fas fa-external-link-alt"></i></a></h2>
+                <p>LIWC-22 is a text analysis software that gives more
+                    profound insights into the words in the corpus. When applied on the dataset, it gives 118
+                    features for any review, such as Authentic, Emotional Tone, Past Focus, etc. In order to
+                    calculate these statistics, each dictionary word is measured as a percentage of total words per
+                    text (Cronbach’s α) or, alternatively, in a binary “present versus absent” manner (Kuder–
+                    Richardson Formula 20; Kuder & Richardson, 1937).</p>
             </section>
 
             <!-- Topic Modeling using LDA Section -->
             <section id="lda">
                 <h2>Topic Modeling using LDA</h2>
-                <p><strong>Introduction:</strong> LDA is an unsupervised method to extract topics from documents using word cluster patterns, ideal for large datasets like Amazon reviews.</p>
-                <p><strong>Latent Dirichlet Allocation (LDA):</strong> A Bayesian model sampling over a probability simplex, assigning words to k=7 topics, providing word-topic probabilities and document representations.</p>
-                <p><strong>Choosing Optimal Number of Topics:</strong> With consistent coherence (6-20), k=7 was selected using pyLDAvis for large, non-overlapping bubbles, indicating distinct topics.</p>
-                <p><strong>Calculating Dominant Topic and Total Important Topics:</strong> Dominant Topic is the highest probability topic; Total Important Topics counts topics above a 0.05 threshold, aiding vote correlation analysis.</p>
+                <li><strong>Introduction:</strong> LDA is an unsupervised method to extract topics from documents using word cluster patterns, ideal for large datasets like Amazon reviews.</li>
+                <li><strong>Latent Dirichlet Allocation (LDA):</strong> A Bayesian model sampling over a probability simplex, assigning words to k=7 topics, providing word-topic probabilities and document representations.</li>
+                <li><strong>Choosing Optimal Number of Topics:</strong> With consistent coherence (6-20), k=7 was selected using pyLDAvis for large, non-overlapping bubbles, indicating distinct topics.</li>
+                <li><strong>Calculating Dominant Topic and Total Important Topics:</strong> Dominant Topic is the highest probability topic; Total Important Topics counts topics above a 0.05 threshold, aiding vote correlation analysis.<br><br></li>
+            </section>
+
+            <!-- Feature Extraction Section -->
+            <section id="feature-extraction">
+                <h2>Feature Extraction</h2>
+                <p>The following features were extracted from the Amazon Review/Product Dataset to analyze their impact on perceived helpfulness (votes). Extraction methods leveraged text processing, LIWC, NER, and topic modeling techniques, as detailed below:</p>
+                <ol>
+                    <li><strong>Review Writing Style (Analytic):</strong> This feature was extracted using the LIWC-22 "Analytic" summary variable, which quantifies logical and formal thinking in text. Each review’s text was processed by LIWC to produce a score (0-100), where higher scores indicate structured, analytical writing (e.g., using articles and prepositions), and lower scores reflect a narrative style.</li>
+                    <li><strong>Review Length (WPS):</strong> Review length was calculated as Words Per Sentence (WPS) by dividing the total word count by the sentence count in each review’s "reviewText." Both metrics were derived using LIWC’s built-in word and sentence segmentation, providing a measure of review verbosity.</li>
+                    <li><strong>Review Readability (FRE):</strong> Readability was assessed with the Flesch Reading Ease (FRE) index, computed as FRE = 206.835 - (1.015 * Avg. words per sentence) - (84.6 * Avg. syllables per word). Average words per sentence and syllables per word were extracted from "reviewText" using text processing tools, yielding a score where higher values indicate easier comprehension.</li>
+                    <li><strong>Review Balance:</strong> This was measured as the ratio of LIWC’s positive tone (tone_pos) to negative tone (tone_neg) variables. Both tones were extracted as percentages of words reflecting positive or negative sentiment in each review, providing a balance metric to assess sentiment neutrality or bias.</li>
+                    <li><strong>Review Breadth:</strong> Breadth was determined using Latent Dirichlet Allocation (LDA) topic modeling with k=7 topics. The "reviewText" was processed to assign topic probabilities, and the count of topics with probabilities above a 0.05 threshold was calculated as Total Important Topics, reflecting the diversity of subjects covered.</li>
+                    <li><strong>Verified Purchase:</strong> Extracted directly from the dataset’s "verified" field, this binary feature was coded as a dummy variable (1 = TRUE for verified purchase, 0 = FALSE), indicating whether the reviewer purchased the product on Amazon.</li>
+                    <li><strong>Number of Entities:</strong> Named Entity Recognition (NER) via the spaCy library was applied to "reviewText" to identify and count entities (e.g., product names, brands, locations). The total entity count per review was recorded as a measure of informational detail.</li>
+                    <li><strong>Review with Image:</strong> This feature was derived from the "image" field in the dataset, coded as a dummy variable (1 = image URL present, 0 = absent), indicating whether a review included user-uploaded images alongside text.</li>
+                </ol>
             </section>
 
             <!-- Data Visualizations Section -->
@@ -262,6 +280,22 @@
                         </div>
                     </div>
                 </div>
+            </section>
+
+            <!-- Model Section -->
+            <section id="model">
+                <h2>Model and Findings</h2>
+                <p>Features affecting perceived helpfulness (votes) include:</p>
+                <ol>
+                    <li><strong>Review Writing Style (Analytic):</strong> LIWC’s Analytic score (0-100) measures logical thinking; higher scores positively correlate with votes, enhancing trust and clarity.</li>
+                    <li><strong>Review Length (WPS):</strong> Words per sentence shows a curvilinear relationship; moderate lengths optimize helpfulness, while extremes reduce it.</li>
+                    <li><strong>Review Readability (FRE):</strong> FRE exhibits a curvilinear relationship; moderate readability balances simplicity and depth, maximizing votes.</li>
+                    <li><strong>Review Balance:</strong> Ratio of positive to negative tone is curvilinear; balanced reviews (acknowledging pros and cons) are deemed most helpful.</li>
+                    <li><strong>Review Breadth:</strong> Topic count via LDA is curvilinear; moderate topics provide depth without confusion, boosting helpfulness.</li>
+                    <li><strong>Verified Purchase:</strong> Dummy variable (1 = TRUE, 0 = FALSE) positively correlates with votes, indicating higher credibility.</li>
+                    <li><strong>Number of Entities:</strong> NER count positively correlates with votes; detailed entity mentions enhance informativeness.</li>
+                    <li><strong>Review with Image:</strong> Dummy variable (1 = with image, 0 = without) highly positively correlates with votes, adding visual credibility.</li>
+                </ol>
             </section>
 
             <!-- Conclusion Section -->

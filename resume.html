@@ -36,8 +36,30 @@
                 margin-top: 20px;
                 border-radius: 5px; /* Optional: rounded corners for consistency */
             }
+
+            /* Back Button Styles */
+            .back-button {
+                position: absolute;
+                top: 20px;
+                left: 30px;
+                font-size: 30px;
+                color: #f56a6a;
+                text-decoration: none;
+                z-index: 10;
+                transition: color 0.3s ease;
+            }
+            .back-button:hover {
+                color: #d45252;
+            }
+            header {
+                position: relative;
+                padding-top: 5px; /* Space for the back button */
+            }
         </style>
     </head>
+
+    <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i></a>
+
 	<body>
         <h1><br>Suryam's Resume</h1>
         <p>Preview the report below or download it.</p>
