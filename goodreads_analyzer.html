@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Goodreads Book Analyzer</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+		<style>
+			.container {
+				border: 5px solid #333;
+				padding: 25px;
+				margin: 75px;
+				border-radius: 50px;
+				background-color: #fff;
+				color: #555;
+			}
+
+			body {
+				background-color: #f4f4f4;
+				color: #333;
+				font-family: Arial, sans-serif;
+			}
+
+			h1, h2, h3 {
+				color: #222;
+			}
+
+			h2 {
+				display: inline-block;
+				border-bottom: 3px solid #f56a6a;
+				padding-bottom: 5px;
+				margin-bottom: 20px;
+			}
+
+			p {
+				color: #333;
+				line-height: 1.6;
+			}
+
+			.button-container {
+				text-align: center;
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+			.button-container .button {
+				display: initial;
+				margin: 0 30px;
+				padding: 10px 20px;
+				font-size: 14px;
+			}
+
+			.back-button {
+				position: absolute;
+				top: 20px;
+				left: 30px;
+				font-size: 30px;
+				color: #f56a6a;
+				text-decoration: none;
+				z-index: 10;
+				transition: color 0.3s ease;
+			}
+			.back-button:hover {
+				color: #d45252;
+			}
+			header {
+				position: relative;
+				padding-top: 5px;
+			}
+
+			/* Screenshot image box */
+			.screenshot-box {
+				background: #fff;
+				padding: 15px;
+				border-radius: 10px;
+				box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+				text-align: center;
+				margin: 30px auto;
+				max-width: 90%;
+			}
+			.screenshot-box img {
+				max-width: 100%;
+				height: auto;
+				border-radius: 6px;
+				border: 2px solid #ddd;
+			}
+			.screenshot-caption {
+				font-size: 14px;
+				color: #555;
+				margin-top: 10px;
+			}
+
+			/* Feature list */
+			ul.feature-list {
+				padding-left: 20px;
+			}
+			ul.feature-list li {
+				margin-bottom: 10px;
+				line-height: 1.6;
+				color: #333;
+			}
+
+			/* Tech stack tags */
+			.tech-tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+				margin-top: 10px;
+			}
+			.tech-tag {
+				background: #f4f4f4;
+				border: 1px solid #ddd;
+				border-radius: 20px;
+				padding: 5px 14px;
+				font-size: 13px;
+				color: #333;
+			}
+		</style>
+	</head>
+
+	<body class="is-preload">
+
+		<!-- Header with back button -->
+		<header>
+			<a href="index.html#all-projects" class="back-button"><i class="fas fa-arrow-left"></i></a>
+		</header>
+
+		<div class="container">
+
+			<h1 style="text-align: center;">📚 Goodreads Book Analyzer</h1>
+			<p style="text-align: center; font-weight: 150; text-transform: uppercase;" class="project-description">
+				A live AI-powered web app that analyzes any public Goodreads profile and generates personalized insights into
+				reading habits, genre preferences, personality, and more. Built using LangChain, Groq LLMs, and Streamlit.
+			</p>
+
+			<div class="button-container">
+				<a href="https://github.com/suryam1504/LangChain_Project_Goodreads_Analyzer" target="_blank" class="button">
+					<i class="fab fa-github"></i> GitHub
+				</a>
+				<a href="https://goodreads-analyzer.streamlit.app/" target="_blank" class="button">
+					<i class="fas fa-external-link-alt"></i> Live Demo
+				</a>
+			</div>
+
+			<!-- Screenshot -->
+			<div class="screenshot-box">
+				<img src="images/book_analyzer_pic.png" alt="Goodreads Reader Analyzer screenshot" />
+				<p class="screenshot-caption">The app in action — BookBot sidebar (left) alongside reading summary and analysis results (right).</p>
+			</div>
+
+			<!-- Overview -->
+			<section id="overview">
+				<h2>Overview</h2>
+				<p>
+					The Goodreads Reader Analyzer is a Streamlit-based web application that takes any public Goodreads profile URL and produces
+					a rich, AI-generated breakdown of the user's reading life. The app fetches all shelves (read, currently reading, want to read)
+					via the PirateReads API and pipes this data through a multi-model LangChain pipeline to generate five distinct types of analysis —
+					all with a conversational BookBot running in the sidebar for follow-up questions.
+				</p>
+			</section>
+
+			<!-- Key Features -->
+			<section id="features">
+				<h2>Key Features</h2>
+				<ul class="feature-list">
+					<li>
+						<strong>Reading Summary</strong> — A narrative overview of the user's reading history generated in one of five tonal styles:
+						Warm &amp; Witty, Baby Talk, LinkedIn Update, Pirate, or Roast Master.
+					</li>
+					<li>
+						<strong>Genre Analysis</strong> — Identifies the user's top 5 genres, mapping specific books from their library to each genre with rationale.
+					</li>
+					<li>
+						<strong>Personality Card</strong> — A creative "reader type" label with 4 personality traits, a guilty pleasure read, a signature author,
+						and a one-line diagnosis.
+					</li>
+					<li>
+						<strong>Book Recommendations</strong> — 5 personalized book suggestions (not already in the user's library), contextually grounded
+						in their identified genres and reading patterns.
+					</li>
+					<li>
+						<strong>Review Analysis</strong> — Deconstructs how the user rates and writes reviews: their rating style, review voice, recurring patterns
+						in what excited or disappointed them, and hidden behavioral tendencies.
+					</li>
+					<li>
+						<strong>BookBot</strong> — A sidebar chatbot that answers natural language questions about the user's reading history
+						(e.g., "What's my most-read author?" or "Which genre do I avoid?"), with automatic model fallback on rate limits.
+					</li>
+				</ul>
+			</section>
+
+			<!-- Architecture & Design -->
+			<section id="architecture">
+				<h2>Architecture &amp; Design</h2>
+				<p>
+					The project is built around several notable LangChain and system design patterns:
+				</p>
+				<ul class="feature-list">
+					<li>
+						<strong>Parallel Execution (RunnableParallel)</strong> — Genre analysis and personality card generation run simultaneously,
+						cutting latency by ~50% since they share the same input but are fully independent.
+					</li>
+					<li>
+						<strong>Sequential Chaining</strong> — Book recommendations are generated as a two-step sequential chain:
+						genre analysis runs first, and its output is fed as context into the recommendation chain for grounded, relevant suggestions.
+					</li>
+					<li>
+						<strong>Multi-Model Rate Limit Spreading</strong> — Six different Groq models are deployed across tasks (llama-4-scout, kimi-k2,
+						qwen3-32b, llama-3.3-70b, llama-3.1-8b), each selected for its throughput-capability trade-off. The BookBot has a 3-model
+						automatic fallback chain to handle rate limits transparently.
+					</li>
+					<li>
+						<strong>Robust Output Parsing</strong> — A custom <code>make_safe_parser()</code> wraps Pydantic v2's output parser to handle
+						thinking-model outputs: strips <code>&lt;think&gt;...&lt;/think&gt;</code> blocks, extracts all candidate JSON objects from
+						prose, and validates each until one passes the schema — critical for models like kimi-k2 and qwen3.
+					</li>
+					<li>
+						<strong>Streamlit Caching</strong> — All expensive operations (book fetching, LLM analysis) are cached with a 1-hour TTL,
+						keyed on inputs, so repeat visits or re-runs within the session are instant.
+					</li>
+					<li>
+						<strong>Context Stuffing (No RAG)</strong> — The BookBot injects the user's full reading history into the system prompt on every
+						turn instead of using a vector database — simpler architecture while maintaining high accuracy for personal data Q&amp;A.
+					</li>
+				</ul>
+			</section>
+
+			<!-- Tech Stack -->
+			<section id="tech-stack">
+				<h2>Tech Stack</h2>
+				<div class="tech-tags">
+					<span class="tech-tag">Python</span>
+					<span class="tech-tag">LangChain</span>
+					<span class="tech-tag">Groq API</span>
+					<span class="tech-tag">Streamlit</span>
+					<span class="tech-tag">Pydantic v2</span>
+					<span class="tech-tag">LLaMA 3 / LLaMA 4</span>
+					<span class="tech-tag">Kimi K2</span>
+					<span class="tech-tag">Qwen3-32B</span>
+					<span class="tech-tag">PirateReads API</span>
+					<span class="tech-tag">RunnableParallel</span>
+					<span class="tech-tag">PydanticOutputParser</span>
+					<span class="tech-tag">RAG (Context Stuffing)</span>
+				</div>
+			</section>
+
+		</div>
+
+	</body>
+</html>
