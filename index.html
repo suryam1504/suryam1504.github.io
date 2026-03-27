@@ -7,15 +7,76 @@
 <html>
 	<head>
     	<title>Suryam's Portfolio</title>
+    	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><text y='32' font-size='32'>📊</text></svg>" />
     	<meta charset="utf-8" />
     	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     	<link rel="stylesheet" href="assets/css/main.css" />
     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 		
 		<!--for fastscrlling-->
 		<style>
 			html {
 				scroll-behavior: smooth;
+			}
+
+			/* Skills grid: prevent flex-stretch height mismatch between paired cards */
+			#skills-tools .features {
+				align-items: flex-start;
+			}
+			.skills-category {
+				margin-bottom: 2.5em;
+			}
+			.skills-category h3 {
+				font-size: 1em;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				color: #f56a6a;
+				border-bottom: 2px solid #f56a6a;
+				padding-bottom: 0.4em;
+				margin-bottom: 1em;
+			}
+			.skills-grid {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1em;
+			}
+			.skill-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				width: 70px;
+				text-align: center;
+			}
+			.skill-item i {
+				font-size: 2.2em;
+				margin-bottom: 0.3em;
+				color: #555;
+				transition: color 0.2s ease;
+			}
+			.skill-item:hover i {
+				color: #f56a6a;
+			}
+			.skill-item span {
+				font-size: 0.65em;
+				color: #666;
+				line-height: 1.2;
+				word-break: break-word;
+			}
+			.skill-tag {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+				background: #f4f4f4;
+				border-radius: 20px;
+				padding: 0.3em 0.8em;
+				font-size: 0.8em;
+				color: #444;
+				transition: background 0.2s;
+			}
+			.skill-tag:hover {
+				background: #fde8e8;
+				color: #f56a6a;
 			}
 		</style>
     </head>
@@ -78,34 +139,115 @@
 										<h2>Skills and Tools</h2>
 									</header>
 									<div class="features">
-										<article>
-											<span class="icon solid fa-code"></span>
-											<div class="content">
-												<h3>Programming Languages</h3>
-												<p>Python | R | SQL (DDL, DML) | Git | C | C++ | Java | MATLAB </p>
+
+									<!-- Programming Languages -->
+									<article>
+										<span class="icon solid fa-code"></span>
+										<div class="content">
+											<h3>Programming Languages</h3>
+											<div class="skills-grid">
+										<div class="skill-item"><i class="devicon-python-plain colored"></i><span>Python</span></div>
+										<div class="skill-item"><i class="devicon-r-plain colored"></i><span>R</span></div>
+										<div class="skill-item"><i class="devicon-azuresqldatabase-plain colored"></i><span>SQL</span></div>
+										<div class="skill-item"><i class="devicon-cplusplus-plain colored"></i><span>C / C++</span></div>
+										<div class="skill-item"><i class="devicon-java-plain colored"></i><span>Java</span></div>
+										<div class="skill-item"><i class="devicon-matlab-plain colored"></i><span>MATLAB</span></div>
 											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-laptop-code"></span>
-											<div class="content">
-												<h3>Softwares</h3>
-												<p>Jupyter Notebook | Google Colab | RStudio | GitHub | Quarto | AMPL | LaTeX | Excel | Power BI | Visual Studio Code | LaTeX (Overleaf) | LIWC | Adobe Premiere Pro</p>
+										</div>
+									</article>
+
+									<!-- Software & Tools -->
+									<article>
+										<span class="icon solid fa-laptop-code"></span>
+										<div class="content">
+											<h3>Software &amp; Tools</h3>
+											<div class="skills-grid">
+										<div class="skill-item"><i class="devicon-jupyter-plain colored"></i><span>Jupyter</span></div>
+										<div class="skill-item"><i class="devicon-googlecolab-plain colored"></i><span>Google Colab</span></div>
+										<div class="skill-item"><i class="devicon-rstudio-plain colored"></i><span>RStudio</span></div>
+										<div class="skill-item"><i class="devicon-github-original colored"></i><span>GitHub</span></div>
+										<div class="skill-item"><i class="devicon-git-plain colored"></i><span>Git</span></div>
+										<div class="skill-item"><i class="devicon-vscode-plain colored"></i><span>VS Code</span></div>
+										<div class="skill-item"><i class="devicon-latex-original colored"></i><span>LaTeX</span></div>
+										<div class="skill-item"><i class="fas fa-file-excel" style="font-size:2em;color:#1D6F42;margin-bottom:0.3em;"></i><span>Excel</span></div>
+										<div class="skill-item"><i class="fas fa-chart-bar" style="font-size:2em;color:#F2C811;margin-bottom:0.3em;"></i><span>Power BI</span></div>
+										<div class="skill-item"><i class="fas fa-file-alt" style="font-size:2.2em;margin-bottom:0.3em;"></i><span>Quarto</span></div>
+										<div class="skill-item"><i class="fas fa-sliders-h" style="font-size:2em;margin-bottom:0.3em;"></i><span>AMPL</span></div>
+										<div class="skill-item"><i class="fas fa-comment-dots" style="font-size:2em;margin-bottom:0.3em;"></i><span>LIWC</span></div>
 											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-cubes"></span>
-											<div class="content">
-												<h3>Libraries and Frameworks</h3>
-												<p> NumPy | pandas | Matplotlib | Seaborn | scikit-learn | TensorFlow | PyTorch | Keras | transformers | nltk | spaCy | pyLDAvis | readability </p>
+										</div>
+									</article>
+
+									<!-- ML & Data Science -->
+									<article>
+										<span class="icon solid fa-brain"></span>
+										<div class="content">
+											<h3>ML &amp; Data Science</h3>
+											<div class="skills-grid">
+										<div class="skill-item"><i class="devicon-scikitlearn-plain colored"></i><span>scikit-learn</span></div>
+										<div class="skill-item"><i class="devicon-numpy-plain colored"></i><span>NumPy</span></div>
+										<div class="skill-item"><i class="devicon-pandas-plain colored"></i><span>pandas</span></div>
+										<div class="skill-item"><i class="devicon-matplotlib-plain colored"></i><span>Matplotlib</span></div>
+										<div class="skill-item"><i class="fas fa-chart-area" style="font-size:2.2em;margin-bottom:0.3em;"></i><span>Seaborn</span></div>
+										<div class="skill-item"><i class="fas fa-project-diagram" style="font-size:2.2em;margin-bottom:0.3em;"></i><span>pyLDAvis</span></div>
+										<div class="skill-item"><i class="fas fa-font" style="font-size:2.2em;margin-bottom:0.3em;"></i><span>NLTK</span></div>
+										<div class="skill-item"><i class="fas fa-language" style="font-size:2.2em;margin-bottom:0.3em;"></i><span>spaCy</span></div>
 											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-users"></span>
-											<div class="content">
-												<h3>Soft Skills</h3>
-												<p>Technologically Adaptable | Teamwork | Problem-Solving | Time-Management | Communication | Presentation | Keen Listener</p>
+										</div>
+									</article>
+
+									<!-- Deep Learning & NLP -->
+									<article>
+										<span class="icon solid fa-network-wired"></span>
+										<div class="content">
+											<h3>Deep Learning &amp; NLP</h3>
+											<div class="skills-grid">
+										<div class="skill-item"><i class="devicon-tensorflow-original colored"></i><span>TensorFlow</span></div>
+										<div class="skill-item"><i class="devicon-pytorch-original colored"></i><span>PyTorch</span></div>
+										<div class="skill-item"><i class="devicon-keras-plain colored"></i><span>Keras</span></div>
+										<div class="skill-item"><i class="fas fa-smile" style="font-size:2.2em;margin-bottom:0.3em;color:#FFD21E;"></i><span>Hugging Face</span></div>
+										<div class="skill-item"><i class="fas fa-cube" style="font-size:2.2em;margin-bottom:0.3em;"></i><span>BERT</span></div>
+										<div class="skill-item"><i class="fas fa-magic" style="font-size:2.2em;margin-bottom:0.3em;"></i><span>GPT</span></div>
 											</div>
-										</article>
+										</div>
+									</article>
+
+									<!-- GenAI & LLMs -->
+									<article>
+										<span class="icon solid fa-robot"></span>
+										<div class="content">
+											<h3>GenAI &amp; LLMs</h3>
+											<div class="skills-grid">
+										<span class="skill-tag"><i class="fas fa-link"></i> LangChain</span>
+										<span class="skill-tag"><i class="fas fa-project-diagram"></i> LangGraph</span>
+										<span class="skill-tag"><i class="fas fa-search"></i> RAG</span>
+										<span class="skill-tag"><i class="fas fa-pencil-alt"></i> Prompt Engineering</span>
+										<span class="skill-tag"><i class="fas fa-users-cog"></i> CrewAI</span>
+										<span class="skill-tag"><i class="fas fa-brain"></i> Agentic AI</span>
+										<span class="skill-tag"><i class="fas fa-thumbs-up"></i> RLHF</span>
+										<span class="skill-tag"><i class="fas fa-photo-video"></i> Multimodal AI</span>
+										<span class="skill-tag"><i class="fas fa-check-circle"></i> Pydantic v2</span>
+										<span class="skill-tag"><i class="fas fa-database"></i> Vector Databases</span>
+											</div>
+										</div>
+									</article>
+
+<!-- Research & Statistical Methods -->
+								<article>
+									<span class="icon solid fa-flask"></span>
+									<div class="content">
+										<h3>Research &amp; Statistical Methods</h3>
+										<div class="skills-grid">
+									<span class="skill-tag"><i class="fas fa-random"></i> Causal Inference</span>
+									<span class="skill-tag"><i class="fas fa-chart-line"></i> Regression Analysis</span>
+									<span class="skill-tag"><i class="fas fa-vial"></i> Hypothesis Testing</span>
+									<span class="skill-tag"><i class="fas fa-flask"></i> Experimental Design</span>
+									<span class="skill-tag"><i class="fas fa-cubes"></i> Statistical Modeling</span>
+									<span class="skill-tag"><i class="fas fa-book-open"></i> Literature Review</span>
+									<span class="skill-tag"><i class="fas fa-pen-nib"></i> Academic Writing</span>								<span class="skill-tag"><i class="fas fa-calculator"></i> Inferential Statistics</span>											</div>
+										</div>
+									</article>
+
 									</div>
 								</section>
 
